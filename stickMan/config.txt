@@ -1,0 +1,14 @@
+************  STICK MAN CONFIG FILE ****************
+Size (tiny, normal, large, giant):
+normal
+x coordinate:
+400
+velocity:
+2
+background image URL:
+"../BouncingBall/fish.png"
+frame width:
+1000
+frame height:
+600
+****************************************************
