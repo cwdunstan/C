@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-03-05T07:56:47
+# Project created by QtCreator 2019-03-18T08:13:26
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = BouncingBall
+TARGET = flyingStickMan
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,15 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         dialog.cpp \
-    stickman.cpp \
+    filereader.cpp \
     background.cpp \
-    filereader.cpp
+    stickman.cpp
 
 HEADERS += \
         dialog.h \
-    stickman.h \
+    filereader.h \
     background.h \
-    filereader.h
+    stickman.h
 
 FORMS += \
         dialog.ui

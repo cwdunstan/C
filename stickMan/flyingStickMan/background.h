@@ -15,7 +15,6 @@ public:
     void render(QPainter &painter, unsigned int time, int framewidth);
 
 private:
-    Background();
     unsigned int m_width;
     unsigned int m_height;
     double m_speed;

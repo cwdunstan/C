@@ -6,9 +6,7 @@ fileReader::fileReader(std::string filePath)
     std::string line;
     //input file stream
     std::ifstream infile;
-    std::ofstream outfile;
     infile.open(filePath);
-    outfile.open("../stickMan/uot.txt");
     int i=0;
     if(infile.is_open()){
         while(getline(infile,line)){
@@ -31,12 +29,17 @@ fileReader::fileReader(std::string filePath)
                 //reads background image on line 8
                 case 8:m_bgPath=line;
                        break;
-
+                //reads background image width on line 10
+                case 10: m_imgWidth=stoi(line);
+                       break;
+                //reads background image height on line 12
+                case 12:m_imgHeight=stoi(line);
+                        break;
                 //reads frame width on line 10
-                case 10: m_width=stoi(line);
+                case 14: m_frameWidth=stoi(line);
                        break;
                 //reads frame height on line 12
-                case 12:m_heigth=stoi(line);
+                case 16:m_frameHeight=stoi(line);
                         break;
             }
             i++;
@@ -49,12 +52,20 @@ std::string fileReader::getBgPath(){
     return m_bgPath;
 }
 //return frame height
-int fileReader::getHeigth(){
-    return m_heigth;
+int fileReader::getFrameHeight(){
+    return m_frameHeight;
 }
 //return frame width
-int fileReader::getWidth(){
-    return m_width;
+int fileReader::getFrameWidth(){
+    return m_frameWidth;
+}
+//return background image height
+int fileReader::getImgHeight(){
+    return m_imgHeight;
+}
+//return background image width
+int fileReader::getImgWidth(){
+    return m_imgWidth;
 }
 //return man size
 double fileReader::getSize(){

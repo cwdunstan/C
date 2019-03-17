@@ -8,13 +8,13 @@ stickMan::stickMan(int x_coordinate, double velocity, double size):
     m_size(size)
 {}
 
-void stickMan::render(QPainter &painter, unsigned int time)
+void stickMan::render(QPainter &painter, unsigned int time, int frameHeight)
 {
     //f for scaling Factor
     double f=m_size;
     //x for x coordinate
     int x=m_xcoordinate;
-    double y=(600-(f*320));
+    double y=(frameHeight-(f*320));
     painter.setPen ( QPen(Qt::black,5));
     painter.setBrush( QBrush( Qt::white ) );
 

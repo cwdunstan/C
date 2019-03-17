@@ -14,12 +14,13 @@ public:
 
     ~stickMan(){}
 
-    void render(QPainter &painter, unsigned int time);
+    void render(QPainter &painter, unsigned int time,int frameHeight);
 
 
 private:
-    // tiny, normal, large, and giant
-    //starting x coordinate
+    // y coordinate
+    int m_ycoordinate;
+    // x coordinate
     int m_xcoordinate;
     //starting velocity
     double m_Velocity;
