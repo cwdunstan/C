@@ -23,23 +23,17 @@ fileReader::fileReader(std::string filePath)
                        break;
 
                 //reads velocity on line 6
-                case 6:m_velocity=stod(line);
+                case 6:m_velocity=stoi(line);
                        break;
 
                 //reads background image on line 8
                 case 8:m_bgPath=line;
                        break;
-                //reads background image width on line 10
-                case 10: m_imgWidth=stoi(line);
-                       break;
-                //reads background image height on line 12
-                case 12:m_imgHeight=stoi(line);
-                        break;
                 //reads frame width on line 10
-                case 14: m_frameWidth=stoi(line);
+                case 10: m_frameWidth=stoi(line);
                        break;
                 //reads frame height on line 12
-                case 16:m_frameHeight=stoi(line);
+                case 12:m_frameHeight=stoi(line);
                         break;
             }
             i++;
@@ -59,20 +53,12 @@ int fileReader::getFrameHeight(){
 int fileReader::getFrameWidth(){
     return m_frameWidth;
 }
-//return background image height
-int fileReader::getImgHeight(){
-    return m_imgHeight;
-}
-//return background image width
-int fileReader::getImgWidth(){
-    return m_imgWidth;
-}
 //return man size
 double fileReader::getSize(){
     return m_size;
 }
 //return velocity
-double fileReader::getVelocity(){
+int fileReader::getVelocity(){
     return m_velocity;
 }
 //return x coordinate

@@ -1,6 +1,6 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-#include <QMessageBox>
+
 
 
 Dialog::Dialog(fileReader * f, QWidget *parent) :
@@ -13,10 +13,8 @@ Dialog::Dialog(fileReader * f, QWidget *parent) :
     m_velocity(f->getVelocity()),
     m_frameWidth(f->getFrameWidth()),
     m_frameHeight(f->getFrameHeight()),
-    m_imgWidth(f->getImgWidth()),
-    m_imgHeight(f->getImgHeight()),
     //create a new background object
-    m_background(Background(m_imgWidth,m_imgHeight,m_velocity,m_filepath)),
+    m_background(Background(m_frameWidth,m_frameHeight,m_velocity,m_filepath)),
     m_stickMan(stickMan(m_xcoord,m_velocity,m_manSize))
 
 {
@@ -44,7 +42,7 @@ void Dialog::paintEvent(QPaintEvent *event)
 {
 
      QPainter painter(this);
-     m_background.render(painter, m_counter,m_frameWidth);
+     m_background.render(painter, m_counter);
      m_stickMan.render(painter,m_counter,m_frameHeight);
      m_counter++;
 

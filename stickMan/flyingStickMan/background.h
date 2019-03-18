@@ -8,16 +8,16 @@ class Background
 {
 
 public:
-    Background(int width, int height, double speed, std::string bgPath);
+    Background(int width, int height, int speed, std::string bgPath);
 
     ~Background(){}
 
-    void render(QPainter &painter, unsigned int time, int framewidth);
+    void render(QPainter &painter, unsigned int time);
 
 private:
     unsigned int m_width;
     unsigned int m_height;
-    double m_speed;
+    int m_speed;
     std::string m_bgPath;
 };
 

@@ -37,7 +37,7 @@ private:
     int m_imgHeight;
     int m_xcoord;
     double m_manSize;
-    double m_velocity;
+    int m_velocity;
     Background m_background;
     stickMan m_stickMan;
 };
