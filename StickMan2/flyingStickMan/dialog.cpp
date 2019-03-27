@@ -23,15 +23,21 @@ Dialog::Dialog(QWidget *parent) :
     //log.exec();
 
     //music player
-    music=new QMediaPlayer();
-    music->setMedia(QUrl("../FlyingStickMan/soundtrack.mp3"));
+    playlist =new QMediaPlaylist();
+    playlist->addMedia(QUrl("../FlyingStickMan/soundtrack.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    music = new QMediaPlayer();
+    music->setPlaylist(playlist);
     music->play();
 
     //keyboard
 
     ui->setupUi(this);
     //resize frame to values from config file
-    this->resize(m_background->getWidth(),m_background->getHeight());
+    this->setMaximumWidth(m_background->getWidth());
+    this->setMinimumWidth(m_background->getWidth());
+    this->setMaximumHeight(m_background->getHeight());
+    this->setMinimumHeight(m_background->getHeight());
     //start QTimer
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
@@ -69,6 +75,7 @@ void Dialog::paintEvent(QPaintEvent *event)
 //This key event triggers hard mode (on Y) and Normal (on U)
 void Dialog::keyPressEvent(QKeyEvent * event){
     if(event->key() == Qt::Key_Y){
+       m_stickMan->setState(1);
        m_background->setSpeed(60);
        m_background->setImage("../FlyingStickMan/grassyH.jpg");
        music->setMedia(QUrl("../FlyingStickMan/hardMode.mp3"));
@@ -76,9 +83,12 @@ void Dialog::keyPressEvent(QKeyEvent * event){
     }
     if(event->key() == Qt::Key_U){
        m_background->revertspeed();
+       m_stickMan->setState(0);
        m_background->setImage("../FlyingStickMan/grassy.jpg");
-       music->setMedia(QUrl("../FlyingStickMan/soundtrack.mp3"));
-        music->play();
+       music->setPlaylist(playlist);
+       music->play();
+
+
     }
 }
 

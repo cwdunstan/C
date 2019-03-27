@@ -6,6 +6,7 @@
 #include <QDialog>
 #include <QTimer>
 #include <QMediaContent>
+#include <QMediaPlaylist>
 #include <QMediaPlayer>
 
 
