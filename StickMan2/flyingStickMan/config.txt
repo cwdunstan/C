@@ -1,0 +1,14 @@
+************  STICK MAN CONFIG FILE ****************
+Size (tiny, normal, large, giant):
+normal
+x coordinate:
+1000
+velocity:
+10
+background image URL:
+../flyingStickMan/grassy.jpg
+frame width:
+2600
+frame height:
+1600
+****************************************************

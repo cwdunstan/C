@@ -1,10 +1,10 @@
 ************  STICK MAN CONFIG FILE ****************
 Size (tiny, normal, large, giant):
-normal
+tiny
 x coordinate:
-800
+600
 velocity:
-4
+10
 background image URL:
 ../flyingStickMan/bridge.jpg
 frame width:

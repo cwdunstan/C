@@ -526,9 +526,7 @@ debug/dialog.o: ../flyingStickMan/dialog.cpp ../flyingStickMan/dialog.h \
 		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qstyle.h \
 		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qtabwidget.h \
-		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/QMessageBox \
-		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qmessagebox.h
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\dialog.o ..\flyingStickMan\dialog.cpp
 
 debug/filereader.o: ../flyingStickMan/filereader.cpp ../flyingStickMan/filereader.h
@@ -617,7 +615,31 @@ debug/background.o: ../flyingStickMan/background.cpp ../flyingStickMan/backgroun
 		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qbrush.h \
 		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qfontinfo.h \
 		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qfont.h \
-		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qfontmetrics.h
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qdialog.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qcursor.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qvariant.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qmap.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qdebug.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qtextstream.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qlocale.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qset.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/Qt5.9.4/5.9.4/mingw53_32/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\background.o ..\flyingStickMan\background.cpp
 
 debug/stickman.o: ../flyingStickMan/stickman.cpp ../flyingStickMan/stickman.h \
