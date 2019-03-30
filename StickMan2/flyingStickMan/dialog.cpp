@@ -1,10 +1,5 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-#include "memory"
-#include <iostream>
-#include <QKeyEvent>
-
-
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -13,14 +8,11 @@ Dialog::Dialog(QWidget *parent) :
     std::unique_ptr<fileReader> filep(new fileReader("../flyingStickMan/config.txt"));
     //new game object factory
     backgroundFactory backgroundfactory;
-    characterFactory characterfactory;
-    m_stickMan=characterfactory.newCharacter(PLAYER,*filep);
+    playerFactory playerfactory;
+
     m_background= backgroundfactory.newObject(BG,*filep);
+    m_stickMan = playerfactory.newPlayer(filep->getSize());
 
-
-    //QMessageBox log;
-    //log.setText(QString::fromStdString(m_background->tell()));
-    //log.exec();
 
     //music player
     playlist =new QMediaPlaylist();
@@ -30,23 +22,18 @@ Dialog::Dialog(QWidget *parent) :
     music->setPlaylist(playlist);
     music->play();
 
-    //keyboard
-
     ui->setupUi(this);
     //resize frame to values from config file
     this->setMaximumWidth(m_background->getWidth());
     this->setMinimumWidth(m_background->getWidth());
     this->setMaximumHeight(m_background->getHeight());
     this->setMinimumHeight(m_background->getHeight());
+
     //start QTimer
-    QTimer *timer = new QTimer(this);
+    timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
     timer->start(16);
-
-    //read keys
-
-
-
+     m_currentSpeed=16;
 }
 
 Dialog::~Dialog()
@@ -62,13 +49,12 @@ void Dialog::nextFrame()
 
 void Dialog::paintEvent(QPaintEvent *event)
 {
-
      QPainter painter(this);
      //call render function within background object.
      m_background->render(painter, m_counter);
-     m_stickMan->render(painter,m_counter,m_background->getHeight());
+     //m_stickMan->render(painter,m_counter,m_background->getHeight());
+     m_stickMan->render(painter,m_counter,m_background->getHeight(),600);
      m_counter++;
-
 }
 
 
@@ -76,18 +62,33 @@ void Dialog::paintEvent(QPaintEvent *event)
 void Dialog::keyPressEvent(QKeyEvent * event){
     if(event->key() == Qt::Key_Y){
        m_stickMan->setState(1);
-       m_background->setSpeed(60);
-       m_background->setImage("../FlyingStickMan/grassyH.jpg");
+       timer->start(4);
+       m_currentSpeed=4;
+       m_background->setTexture("../FlyingStickMan/grassyH.jpg");
        music->setMedia(QUrl("../FlyingStickMan/hardMode.mp3"));
-        music->play();
+       music->play();
     }
     if(event->key() == Qt::Key_U){
-       m_background->revertspeed();
+       timer->start(16);
+       m_currentSpeed=16;
        m_stickMan->setState(0);
-       m_background->setImage("../FlyingStickMan/grassy.jpg");
+       m_background->setTexture("../FlyingStickMan/grassy.jpg");
        music->setPlaylist(playlist);
        music->play();
+    }
 
+    //Key Press P: Pause,
+    if(event->key() == Qt::Key_P){
+        if(!m_paused){
+            timer->stop();
+            music->pause();
+            m_paused=true;
+        }
+        else{
+            timer->start(m_currentSpeed);
+            music->play();
+             m_paused=false;
+        }
 
     }
 }

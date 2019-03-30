@@ -1,9 +1,12 @@
 #ifndef FILEREADER_H
 #define FILEREADER_H
+
 #include <string>
 #include<iostream>
 #include <fstream>
 #include <stdlib.h>
+#include <QMessageBox>
+#include <set>
 
 class fileReader
 {
@@ -18,10 +21,10 @@ public:
     //get frame height
     int getFrameHeight();
     //get man size
-    double getSize();
+    std::string getSize();
     //get man velocity
     int getVelocity();
-    //get background file path
+    //get backgsround file path
     std::string getBgPath();
 
 
@@ -29,9 +32,10 @@ private:
     int m_frameWidth;
     int m_frameHeight;
     int m_xcoord;
-    double m_size;
+    std::string m_size;
     int m_velocity;
     std::string m_bgPath;
+
 
 
 };

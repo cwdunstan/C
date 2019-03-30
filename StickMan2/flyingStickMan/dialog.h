@@ -1,13 +1,18 @@
-#pragma once
+#ifndef DIALOG_H
+#define DIALOG_H
+
 #include "filereader.h"
 #include "gameobject.h"
-#include "gamecharacter.h"
-#include <QMessageBox>
+#include "playerobject.h"
 #include <QDialog>
 #include <QTimer>
 #include <QMediaContent>
 #include <QMediaPlaylist>
 #include <QMediaPlayer>
+#include <iostream>
+#include <QKeyEvent>
+#include <QApplication>
+#include <memory>
 
 
 
@@ -34,11 +39,15 @@ protected:
 
 private:
     Ui::Dialog *ui;
-    gameCharacter* m_stickMan;
     gameObject* m_background;
+    playerObject * m_stickMan;
     QMediaPlaylist * playlist;
     QMediaPlayer * music;
+    QTimer *timer;
     int m_counter;
+    int m_currentSpeed;
+    bool m_paused;
 };
 
+#endif // DIALOG_H
 

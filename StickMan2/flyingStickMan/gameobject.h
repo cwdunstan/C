@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
+
 #include <string>
 #include "filereader.h"
 #include <QPixmap>
@@ -10,12 +12,13 @@ enum objectType{BG};
 class gameObject{
 public:
     virtual ~gameObject(){}
-    virtual int getWidth()=0;
-    virtual int getHeight()=0;
-    virtual void setSpeed(int speed)=0;
-    virtual void setImage(std::string path)=0;
-    virtual void revertspeed()=0;
+    virtual int getWidth(){return this->m_width;}
+    virtual int getHeight(){return this->m_height;}
+    virtual void setTexture(std::string path)=0;
     virtual void render(QPainter &painter, unsigned int time)=0;
+protected:
+    int m_width=1200;
+    int m_height=800;
 };
 
 
@@ -29,13 +32,8 @@ class background:public gameObject{
         this->m_width=f.getFrameWidth();
         this->m_startspeed=f.getVelocity();
     }
-    virtual int getWidth(){return this->m_width;}
-    virtual int getHeight(){return this->m_height;}
-    virtual void setSpeed(int speed){
-        m_speed=speed;
-    }
-    virtual void setImage(std::string path){m_bgPath=path;}
-    virtual void revertspeed(){m_speed = m_startspeed;}
+
+    virtual void setTexture(std::string path){m_bgPath=path;}
     virtual void render(QPainter &painter, unsigned int time){
         //convert file path to Qstring, used to draw onto background rectangle
         QPixmap bgimg;
@@ -67,5 +65,7 @@ public:
         }
     }
 };
+
+#endif // GAMEOBJECT_H
 
 

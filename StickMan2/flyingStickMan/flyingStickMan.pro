@@ -34,7 +34,8 @@ HEADERS += \
         dialog.h \
     gameobject.h \
     filereader.h \
-    gamecharacter.h
+    gamecharacter.h \
+    playerobject.h
 
 FORMS += \
         dialog.ui
