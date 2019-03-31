@@ -6,7 +6,7 @@ x coordinate:
 velocity:
 10
 background image URL:
-../flyingStickMan/grassy.jpg
+../flyingStickMan/Resources/grassy.jpg
 frame width:
 1300
 frame height:

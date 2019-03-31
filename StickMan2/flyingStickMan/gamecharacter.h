@@ -1,3 +1,4 @@
+/**
 #pragma once
 #include <string>
 #include "filereader.h"
@@ -113,3 +114,4 @@ public:
 };
 
 
+**/

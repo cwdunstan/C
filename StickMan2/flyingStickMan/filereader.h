@@ -1,43 +1,32 @@
 #ifndef FILEREADER_H
 #define FILEREADER_H
 
-#include <string>
-#include<iostream>
 #include <fstream>
-#include <stdlib.h>
-#include <QMessageBox>
+#include <iostream>
 #include <set>
+#include <stdlib.h>
+#include <string>
+#include <QMessageBox>
 
-class fileReader
-{
-public:
+//filereader class
+//generic getters
+class fileReader {
+  public:
     fileReader(std::string filePath);
-
     ~fileReader(){}
-    //get x starting coordinate
-    int getX();
-    //get frame width
-    int getFrameWidth();
-    //get frame height
     int getFrameHeight();
-    //get man size
-    std::string getSize();
-    //get man velocity
+    int getFrameWidth();
     int getVelocity();
-    //get backgsround file path
+    int getX();
+    std::string getSize();
     std::string getBgPath();
-
-
-private:
+  private:
     int m_frameWidth;
     int m_frameHeight;
+    int m_velocity;
     int m_xcoord;
     std::string m_size;
-    int m_velocity;
     std::string m_bgPath;
-
-
-
 };
 
 #endif // FILEREADER_H
