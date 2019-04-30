@@ -1,0 +1,10 @@
+debug/main.o
+debug/dialog.o
+debug/background.o
+debug/coordinate.o
+debug/entity.o
+debug/moon.o
+debug/score.o
+debug/stickman.o
+debug/qrc_resources.o
+debug/moc_dialog.o

@@ -1,0 +1,10 @@
+release/main.o
+release/dialog.o
+release/background.o
+release/coordinate.o
+release/entity.o
+release/moon.o
+release/score.o
+release/stickman.o
+release/qrc_resources.o
+release/moc_dialog.o

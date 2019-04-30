@@ -20,7 +20,7 @@ Dialog::Dialog(QWidget *parent) :
     m_startingx=filep->getX();
     //music player
     playlist = new QMediaPlaylist();
-    playlist->addMedia(QUrl ("../FlyingStickMan/Resources/soundtrack.mp3"));
+    playlist->addMedia(QUrl ("qrc:/Resources/soundtrack.mp3"));
     playlist->setPlaybackMode(QMediaPlaylist::Loop);
     music = new QMediaPlayer();
     music->setPlaylist(playlist);
@@ -64,15 +64,15 @@ void Dialog::keyPressEvent (QKeyEvent * event) {
       m_stickMan->setState(1);
       timer->start(4);
       m_currentSpeed=4;
-      m_background->setTexture("../FlyingStickMan/Resources/grassyH.jpg");
-      music->setMedia(QUrl("../FlyingStickMan/Resources/hardMode.mp3"));
+      m_background->setTexture(":/Resources/grassyH.jpg");
+      music->setMedia(QUrl("qrc:/Resources/hardMode.mp3"));
       music->play();
       m_hard=true;
     } else {
       timer->start(16);
       m_currentSpeed=16;
       m_stickMan->setState(0);
-      m_background->setTexture("../FlyingStickMan/Resources/grassy.jpg");
+      m_background->setTexture(":/Resources/grassy.jpg");
       music->setPlaylist(playlist);
       music->play();
       m_hard=false;

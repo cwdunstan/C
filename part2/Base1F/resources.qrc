@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/">
+        <file>0.png</file>
+        <file>1.png</file>
+        <file>2.png</file>
+        <file>3.png</file>
+        <file>4.png</file>
+        <file>5.png</file>
+        <file>6.png</file>
+        <file>7.png</file>
+        <file>8.png</file>
+        <file>9.png</file>
+        <file>bird0.png</file>
+        <file>bird1.png</file>
+        <file>bird2.png</file>
+        <file>bird3.png</file>
+        <file>bird4.png</file>
+        <file>bird5.png</file>
+        <file>cactus0.png</file>
+        <file>cactus1.png</file>
+        <file>cactus2.png</file>
+        <file>cloud0.png</file>
+        <file>ground.png</file>
+        <file>ground1.png</file>
+        <file>moon0.png</file>
+        <file>moon1.png</file>
+        <file>moon2.png</file>
+        <file>moon3.png</file>
+        <file>moon4.png</file>
+        <file>moon5.png</file>
+        <file>moon6.png</file>
+        <file>numbers.png</file>
+        <file>sprite0.png</file>
+        <file>sprite1.png</file>
+    </qresource>
+</RCC>

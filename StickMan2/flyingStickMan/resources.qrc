@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/grassy.jpg</file>
+        <file>Resources/grassyH.jpg</file>
+        <file>Resources/hardMode.mp3</file>
+        <file>Resources/soundtrack.mp3</file>
+    </qresource>
+</RCC>
