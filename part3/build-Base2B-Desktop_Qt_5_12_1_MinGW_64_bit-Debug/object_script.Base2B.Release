@@ -25,5 +25,8 @@ release/stage2dialog.o
 release/swaprendererstage.o
 release/flyingobstacletest.o
 release/stagefactory.o
+release/movablestickman.o
+release/movetest.o
+release/stage3dialog.o
 release/qrc_resources.o
 release/moc_game.o

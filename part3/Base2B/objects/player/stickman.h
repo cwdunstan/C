@@ -29,12 +29,14 @@ public:
     virtual void handleInput(QKeyEvent &event);
     virtual void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 
+    bool isMoving();
     bool isColliding();
     int width();
     int height();
 
 protected:
     bool colliding;
+    bool moving;
 
 private:
     Coordinate coordinate;

@@ -1,6 +1,7 @@
 #include "stagefactory.h"
 #include "collisiontest.h"
 #include "jumptest.h"
+#include "movetest.h"
 #include "flyingobstacletest.h"
 #include "swaprendererstage.h"
 #include "testingdialog.h"
@@ -14,7 +15,33 @@ StageFactory::StageFactory(Config config) : config(config) {
 }
 
 std::unique_ptr<GameStage> StageFactory::createStage() {
-    if (config.stage == 2) {
+    if (config.stage == 3) {
+        if (config.testMode) {
+            // Stage 3 test mode
+            std::vector<std::unique_ptr<TestRunner>> tests;
+            //TO DO: stage 3 specific tests
+            tests.push_back(std::make_unique<CollisionTest>());
+            tests.push_back(std::make_unique<JumpTest>());
+            tests.push_back(std::make_unique<FlyingObstacleTest>());
+
+            std::unique_ptr<GameStage> tester = std::make_unique<TestingDialog>(std::move(tests));
+            return std::make_unique<SwapRendererStage>(std::move(tester));
+        } else {
+            // Stage 3 non-test mode
+            auto player = std::make_unique<MovableStickman>(config.coord.getYCoordinate());
+            player->setSize(config.size);
+            player->setCoordinate(config.coord);
+            player->setSprite(":sprites/sprite0.png");
+
+            auto factory = std::make_unique<EntityFactory>();
+            factory->setVelocity(config.velocity);
+
+            auto stage = std::make_unique<Stage2Dialog>(*config.game, std::move(player), std::move(factory), std::move(*config.obstacles));
+            genericDialogInitializer(*stage);
+            return std::make_unique<SwapRendererStage>(std::move(stage));
+
+        }
+    } else if (config.stage == 2) {
         if (config.testMode) {
             // Stage 2 test mode
             std::vector<std::unique_ptr<TestRunner>> tests;

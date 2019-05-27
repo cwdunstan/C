@@ -9,6 +9,7 @@
 #include <tuple>
 #include "entityfactory.h"
 #include "jumpingstickman.h"
+#include "movablestickman.h"
 #include "colouredentity.h"
 #include "flyingentity.h"
 #include "stage2dialog.h"
@@ -119,7 +120,7 @@ int main(int argc, char *argv[]) {
                 return 0;
             }
             stageConfig.stage = value.toInt();
-            if (stageConfig.stage != 1 && stageConfig.stage != 2) {
+            if (stageConfig.stage != 1 && stageConfig.stage != 2 && stageConfig.stage != 3) {
                 cout << "Invalid stage value. Terminating";
                 return 0;
             }

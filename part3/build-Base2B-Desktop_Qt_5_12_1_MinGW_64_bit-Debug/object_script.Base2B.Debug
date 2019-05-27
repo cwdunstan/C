@@ -25,5 +25,8 @@ debug/stage2dialog.o
 debug/swaprendererstage.o
 debug/flyingobstacletest.o
 debug/stagefactory.o
+debug/movablestickman.o
+debug/movetest.o
+debug/stage3dialog.o
 debug/qrc_resources.o
 debug/moc_game.o

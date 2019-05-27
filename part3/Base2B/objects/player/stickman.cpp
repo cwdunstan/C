@@ -45,6 +45,10 @@ bool Stickman::isColliding() {
     return colliding;
 }
 
+bool Stickman::isMoving() {
+    return moving;
+}
+
 int Stickman::width() {
     return sprite.width();
 }
