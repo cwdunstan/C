@@ -1,13 +1,13 @@
-#include "stage3dialog.h"
+#include "stage2dialog.h"
 #include "collision.h"
 #include "debugrenderer.h"
 
-Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout) :
+Stage2Dialog::Stage2Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout) :
     Dialog(game, std::move(stickman), std::move(factory)), obstacleLayout(std::move(obstacleLayout)), distanceToSpawn(0), nextObstacle(0) {
 
 }
 
-void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
+void Stage2Dialog::spawnObstacles(unsigned int /*counter*/) {
     // Check if it's time to spawn an obstacle
     if (obstacleLayout.size() == 0 || distanceToSpawn > 0) return;
 
@@ -34,7 +34,7 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
     nextObstacle = (nextObstacle + 1) % obstacleLayout.size();
 }
 
-void Stage3Dialog::update() {
+void Stage2Dialog::update() {
     stickman->update(obstacles);
     if (!stickman->isColliding()) {
         // Reduce distance to next obstacle

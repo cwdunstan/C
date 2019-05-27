@@ -1,5 +1,6 @@
 #include "movablestickman.h"
 #include "collision.h"
+#include <QMessageBox>
 
 MovableStickman::MovableStickman(int floor, int jumpImpulse, int maxJumpCount, int gravity) :
     floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
@@ -22,25 +23,25 @@ bool MovableStickman::canJump() {
 
 
 void MovableStickman::handleInput(QKeyEvent &event) {
+    if(event.type() == QEvent::KeyPress) {
         if (event.key() == Qt::Key_Space && !event.isAutoRepeat() && canJump()) {
             jump();
         }
 
-}
-void MovableStickman::keyPressEvent(QKeyEvent *event) {
-    if (!event->isAutoRepeat()) {
-        // make stickman run indefinitely
-        // make stickman jump
-        moving=true;
+        if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
+            moving=true;
+        }
     }
+
+    if(event.type() == QEvent::KeyRelease) {
+        if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
+            moving=false;
+        }
+    }
+
 }
 
-void MovableStickman::keyReleaseEvent(QKeyEvent *event) {
-    if (!event->isAutoRepeat()) {
-        // make stickman stop running
-        moving=false;
-    }
-}
+
 
 void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
     Coordinate &ac = getCoordinate();

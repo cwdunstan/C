@@ -62,6 +62,7 @@ void Dialog::input(QKeyEvent &event) {
     stickman->handleInput(event);
 }
 
+
 // Draws ground and clouds and sets sky colour
 void Dialog::renderBackground(Renderer &renderer, unsigned int counter) {
     background.render(renderer, counter);

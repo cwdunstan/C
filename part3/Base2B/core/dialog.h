@@ -24,7 +24,6 @@ public:
     virtual void update();
     virtual void render(Renderer &renderer);
     virtual void input(QKeyEvent &event);
-
     void setStickman(std::unique_ptr<Stickman> stickman);
     void setBackground(Background background);
     void setMoon(Moon moon);

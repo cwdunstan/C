@@ -6,7 +6,7 @@
 class Stage3Dialog : public Dialog {
 public:
     /**
-     * @brief Stage2Dialog
+     * @brief Stage3Dialog
      * @param game The container of the dialog
      * @param stickman The player's stickman object
      * @param factory An entity factory for producing obstacles
@@ -15,6 +15,7 @@ public:
     Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout);
 
     void update();
+
 
 protected:
     virtual void spawnObstacles(unsigned int counter);

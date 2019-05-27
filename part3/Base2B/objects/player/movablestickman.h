@@ -19,8 +19,6 @@ public:
 
     void jump();
     bool canJump();
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
     void handleInput(QKeyEvent &event);
     void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 

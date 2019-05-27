@@ -6,6 +6,7 @@
 #include "swaprendererstage.h"
 #include "testingdialog.h"
 #include "stage2dialog.h"
+#include "stage3dialog.h"
 #include "dialog.h"
 #include "moon.h"
 #include "background.h"
@@ -36,7 +37,7 @@ std::unique_ptr<GameStage> StageFactory::createStage() {
             auto factory = std::make_unique<EntityFactory>();
             factory->setVelocity(config.velocity);
 
-            auto stage = std::make_unique<Stage2Dialog>(*config.game, std::move(player), std::move(factory), std::move(*config.obstacles));
+            auto stage = std::make_unique<Stage3Dialog>(*config.game, std::move(player), std::move(factory), std::move(*config.obstacles));
             genericDialogInitializer(*stage);
             return std::make_unique<SwapRendererStage>(std::move(stage));
 

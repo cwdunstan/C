@@ -28,6 +28,14 @@ void Game::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+
+void Game::keyReleaseEvent(QKeyEvent *event)
+{
+    if (stage != nullptr) {
+        stage->input(*event);
+    }
+}
+
 void Game::nextFrame() {
     update();
 }
