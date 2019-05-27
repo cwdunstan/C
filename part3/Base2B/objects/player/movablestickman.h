@@ -17,12 +17,15 @@ public:
     MovableStickman(int floor, int jumpImpulse = 15, int maxJumpCount = 2, int gravity = -1);
     ~MovableStickman();
 
+    void setLives(int Lives);
+    int getLives();
     void jump();
     bool canJump();
     void handleInput(QKeyEvent &event);
     void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 
 private:
+    int lives;
     int floor;
     int jumpImpulse;
     int jumpVelocity;

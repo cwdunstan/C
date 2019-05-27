@@ -15,12 +15,14 @@ public:
     void setVelocity(int velocity);
 
     void setSprite(std::string path);
-
+    void setBackwards(bool val);
+    bool getBackwards();
     void render(Renderer &renderer, unsigned int time);
     void update();
 
 private:
     Coordinate coordinate;
+    bool backwards=false;
     int velocity;
     QPixmap sprite;
 };

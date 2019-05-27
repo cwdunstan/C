@@ -21,21 +21,33 @@ bool MovableStickman::canJump() {
     return jumpCount < maxJumpCount;
 }
 
+void MovableStickman::setLives(int Lives) {
+    lives=Lives;
+}
+
+int MovableStickman::getLives() {
+    return lives;
+}
 
 void MovableStickman::handleInput(QKeyEvent &event) {
     if(event.type() == QEvent::KeyPress) {
         if (event.key() == Qt::Key_Space && !event.isAutoRepeat() && canJump()) {
             jump();
         }
-
         if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
-            moving=true;
+            movingRight=true;
+        }
+        if (event.key() == Qt::Key_Left && !event.isAutoRepeat()) {
+            movingLeft=true;
         }
     }
 
     if(event.type() == QEvent::KeyRelease) {
         if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
-            moving=false;
+            movingRight=false;
+        }
+        if (event.key() == Qt::Key_Left && !event.isAutoRepeat()) {
+            movingLeft=false;
         }
     }
 
@@ -51,7 +63,12 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
     // Check for collisions
     for (auto &other : obstacles) {
         Collision::CollisonResult col = Collision::moveCast(*this, *other, 0, jumpVelocity);
-
+        if (movingLeft) {
+            other->setVelocity(-abs(other->getVelocity()));
+        }
+        else if (movingRight) {
+            other->setVelocity(abs(other->getVelocity()));
+        }
         if (col.overlapped) {
             int by = other->getCoordinate().getYCoordinate();
             if (col.down && jumpVelocity < 0) {
@@ -81,4 +98,5 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
 
     ac.setYCoordinate(newY);
     jumpVelocity += gravity;
+
 }

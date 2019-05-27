@@ -82,7 +82,7 @@ void Dialog::renderClouds(Renderer &renderer, unsigned int counter) {
     bool deleteCloud = false;
     for (auto &c: clouds) {
         c->render(renderer, counter);
-        if (c->getCoordinate().getQtRenderingXCoordinate() + c->width() < 0) {
+        if (c->getCoordinate().getQtRenderingXCoordinate() + c->width() < -600) {
             deleteCloud = true;
         }
     }
@@ -96,7 +96,7 @@ void Dialog::renderObstacles(Renderer &renderer, unsigned int counter) {
     bool deleteObstacle = false;
     for (auto &o: obstacles) {
         o->render(renderer, counter);
-        if (o->getCoordinate().getQtRenderingXCoordinate() + o->width() < 0) {
+        if (o->getCoordinate().getQtRenderingXCoordinate() + o->width() < -600) {
             deleteObstacle = true;
         }
     }

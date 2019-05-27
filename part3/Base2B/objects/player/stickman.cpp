@@ -30,7 +30,9 @@ void Stickman::setSprite(std::string path) {
 void Stickman::render(Renderer &renderer, unsigned int time) {
     renderer.draw(coordinate.getQtRenderingXCoordinate(), coordinate.getQtRenderingYCoordinate() - sprite.height(), sprite);
     std::string spritePath = ":sprites/sprite";
-    this->setSprite(spritePath.append(std::to_string((time/5)%2)).append(".png"));
+    if(this->isMoving()){
+        this->setSprite(spritePath.append(std::to_string((time/5)%2)).append(".png"));
+    }
 }
 
 void Stickman::handleInput(QKeyEvent &event) {
@@ -44,9 +46,19 @@ void Stickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
 bool Stickman::isColliding() {
     return colliding;
 }
-
+void Stickman::setMoving(bool val){
+    movingRight=val;
+}
 bool Stickman::isMoving() {
-    return moving;
+    return (movingLeft || movingRight);
+}
+
+bool Stickman::isMovingRight() {
+    return movingRight;
+}
+
+bool Stickman::isMovingLeft() {
+    return movingLeft;
 }
 
 int Stickman::width() {

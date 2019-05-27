@@ -155,6 +155,12 @@ int main(int argc, char *argv[]) {
             }
         } else if (setting == "testMode:") {
             stageConfig.testMode = value.compare("on") == 0;
+        } else if (setting == "lives:") {
+            if (!isNumber(value.toStdString())) {
+                cout << "Lives must be set to a positive integer. Terminating";
+                return 0;
+            }
+            stageConfig.stage
         }
         line = stream.readLine();
     };

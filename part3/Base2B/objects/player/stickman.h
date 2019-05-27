@@ -30,13 +30,17 @@ public:
     virtual void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 
     bool isMoving();
+    void setMoving(bool val);
+    bool isMovingRight();
+    bool isMovingLeft();
     bool isColliding();
     int width();
     int height();
 
 protected:
     bool colliding;
-    bool moving;
+    bool movingLeft;
+    bool movingRight;
 
 private:
     Coordinate coordinate;

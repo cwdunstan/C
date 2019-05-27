@@ -55,6 +55,7 @@ std::unique_ptr<GameStage> StageFactory::createStage() {
         } else {
             // Stage 2 non-test mode
             auto player = std::make_unique<JumpingStickman>(config.coord.getYCoordinate());
+            player->setMoving(true);
             player->setSize(config.size);
             player->setCoordinate(config.coord);
             player->setSprite(":sprites/sprite0.png");

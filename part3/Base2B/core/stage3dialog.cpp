@@ -38,12 +38,19 @@ void Stage3Dialog::update() {
     stickman->update(obstacles);
     if (!stickman->isColliding() && stickman->isMoving()) {
         // Reduce distance to next obstacle
+        if(stickman->isMovingRight()){
+            background.setBackwards(false);
+            score.increment();
+        }
+        if(stickman->isMovingLeft()){
+            background.setBackwards(true);
+        }
         distanceToSpawn -= background.getVelocity();
         background.update();
         speedUp(counter);
-        score.increment();
+        spawnObstacles(counter);
     }
-    spawnObstacles(counter);
+
 
     for (auto &c : clouds) {
         c->collisionLogic(*stickman);

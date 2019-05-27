@@ -42,7 +42,7 @@ void Entity::setSize(int width, int height) {
 }
 
 void Entity::collisionLogic(Stickman &player) {
-    if (!player.isColliding()) this->updateCoordinate();
+    if (!player.isColliding() && player.isMoving()) this->updateCoordinate();
 }
 
 void Entity::updateCoordinate() {
