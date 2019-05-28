@@ -51,3 +51,7 @@ void EntityDecorator::render(Renderer &renderer, unsigned int time) {
 void EntityDecorator::setSize(int width, int height) {
     entity->setSize(width, height);
 }
+
+std::string EntityDecorator::getName(){
+    return entity->getName();
+}

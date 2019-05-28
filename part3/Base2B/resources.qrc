@@ -28,5 +28,7 @@
         <file>sprites/numbers.png</file>
         <file>sprites/sprite0.png</file>
         <file>sprites/sprite1.png</file>
+        <file>sprites/Checkpoint0.png</file>
+        <file>sprites/Checkpoint1.png</file>
     </qresource>
 </RCC>

@@ -156,6 +156,10 @@ int main(int argc, char *argv[]) {
                 obstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
 
             }
+            auto b = factory.getEntity("Checkpoint");
+            b->getCoordinate().setYCoordinate(135);
+            obstacles.push_back(make_pair(move(b),300));
+
         } else if (setting == "obstacles2:") {
             QStringList parts = value.split("|");
             EntityFactory factory;

@@ -28,6 +28,7 @@ public:
     virtual void setSize(int width, int height);
     virtual int getVelocity();
     virtual void setVelocity(int v);
+    virtual std::string getName();
 
     virtual std::unique_ptr<Entity> clone();
 
@@ -62,6 +63,12 @@ public:
     Cloud(Coordinate coordinate, int velocity);
 
     void randomiseHeight();
+};
+
+class Checkpoint: public Entity {
+public:
+    Checkpoint(Coordinate coordinate, int velocity);
+
 };
 
 

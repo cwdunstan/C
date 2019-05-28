@@ -84,7 +84,11 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by - height() - 1;
             } else {
                 // Hidding obstacle from the side
-                colliding = true;
+                if (!other->getName().compare("Checkpoint")==0) {
+                    colliding = true;
+                } else {
+
+                }
             }
         }
     }

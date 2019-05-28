@@ -19,6 +19,7 @@ public:
     void setSize(int width, int height);
     void setVelocity(int v);
     int getVelocity();
+    std::string getName();
     std::unique_ptr<Entity> clone();
 
 private:

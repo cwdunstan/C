@@ -39,8 +39,8 @@ public:
 
 protected:
     bool colliding;
-    bool movingLeft;
-    bool movingRight;
+    bool movingLeft=false;
+    bool movingRight=false;
 
 private:
     Coordinate coordinate;

@@ -75,6 +75,10 @@ void Entity::render(Renderer &renderer, unsigned int time) {
     updateSprite(time);
 }
 
+std::string Entity::getName() {
+    return this->name;
+}
+
 Bird::Bird(Coordinate coordinate, int velocity):
     Entity("bird", coordinate, velocity) {}
 
@@ -95,7 +99,7 @@ void Cactus::randomiseSprite() {
 
 Cloud::Cloud(Coordinate coordinate, int velocity):
     Entity("cloud", coordinate, velocity) {
-    std::string spritePath = ":/sprites" + name + "0.png";
+    std::string spritePath = ":/sprites/" + name + "0.png";
     QPixmap sprite(QString::fromStdString(spritePath));
     this->sprite = sprite;
 }
@@ -104,6 +108,12 @@ Cloud::Cloud(Coordinate coordinate, int velocity):
 void Cloud::randomiseHeight() {
     this->coordinate.setYCoordinate(coordinate.getQtRenderingYCoordinate() + 30*(rand() % 6));
 }
+
+Checkpoint::Checkpoint(Coordinate coordinate, int velocity):
+    Entity("Checkpoint", coordinate, velocity) {}
+
+// Clouds can spawn at random height in the sky
+
 
 
 
