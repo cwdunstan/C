@@ -64,4 +64,5 @@ public:
     void randomiseHeight();
 };
 
+
 #endif // OBSTACLE_H

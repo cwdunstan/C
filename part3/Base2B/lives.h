@@ -13,6 +13,7 @@ public:
 
     void increment();
     void decrement();
+    int getLives();
     void render(Renderer &renderer);
 
 private:

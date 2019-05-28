@@ -23,6 +23,7 @@ protected:
 private:
     std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout;
     int distanceToSpawn;
+    bool hasCollided;
     int nextObstacle;
 };
 

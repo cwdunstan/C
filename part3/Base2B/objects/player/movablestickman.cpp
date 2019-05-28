@@ -85,7 +85,6 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
             } else {
                 // Hidding obstacle from the side
                 colliding = true;
-                this->setLives(this->getLives()-1);
             }
         }
     }

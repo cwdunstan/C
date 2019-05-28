@@ -19,6 +19,10 @@ void Lives::decrement() {
     }
 }
 
+int Lives::getLives() {
+    return currLives;
+}
+
 // Render score from left to right. Requires FILO reading of integer
 void Lives::render(Renderer &renderer) {
     if(currLives>0){

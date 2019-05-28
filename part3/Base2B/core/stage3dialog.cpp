@@ -37,6 +37,7 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
 void Stage3Dialog::update() {
     stickman->update(obstacles);
     if (!stickman->isColliding() && stickman->isMoving()) {
+        hasCollided=false;
         // Reduce distance to next obstacle
         if(stickman->isMovingRight()){
             background.setBackwards(false);
@@ -49,6 +50,16 @@ void Stage3Dialog::update() {
         background.update();
         speedUp(counter);
         spawnObstacles(counter);
+    }
+    if (stickman->isMoving() && stickman->isColliding()) {
+        if (!hasCollided) {
+            lives.decrement();
+            if (lives.getLives() == 0) {
+
+            }
+
+        }
+        hasCollided=true;
     }
 
 
