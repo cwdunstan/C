@@ -11,6 +11,7 @@ Dialog::Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<E
     obstacles(),
     clouds(),
     score(),
+    lives(game.getLives()),
     counter(0),
     night(false),
     moon(),
@@ -55,6 +56,7 @@ void Dialog::render(Renderer &renderer) {
     renderObstacles(renderer, counter);
     stickman->render(renderer, counter);
     score.render(renderer);
+    lives.render(renderer);
     counter++;
 }
 

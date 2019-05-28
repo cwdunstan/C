@@ -13,6 +13,13 @@ void Game::setStage(std::unique_ptr<GameStage> stage) {
     this->stage = std::move(stage);
 }
 
+void Game::setLives(int lives){
+    playerLives=lives;
+}
+int Game::getLives(){
+    return playerLives;
+}
+
 void Game::paintEvent(QPaintEvent* /*event*/) {
     if (stage != nullptr) {
         stage->update();

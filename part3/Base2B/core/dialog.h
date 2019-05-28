@@ -12,6 +12,7 @@
 #include "entity.h"
 #include "moon.h"
 #include "score.h"
+#include "lives.h"
 #include "entityfactory.h"
 #include "game.h"
 #include "renderer.h"
@@ -44,6 +45,7 @@ protected:
     std::vector<std::unique_ptr<Entity>> obstacles;
     std::vector<std::unique_ptr<Entity>> clouds;
     Score score;
+    Lives lives;
     int counter;
 
 private:

@@ -60,7 +60,8 @@ SOURCES += \
     core/stagefactory.cpp \
     objects/player/movablestickman.cpp \
     core/testing/testcases/movetest.cpp \
-    core/stage3dialog.cpp
+    core/stage3dialog.cpp \
+    lives.cpp
 
 HEADERS += \
     objects/entities/colouredentity.h \
@@ -92,7 +93,8 @@ HEADERS += \
     core/stagefactory.h \
     objects/player/movablestickman.h \
     core/testing/testcases/movetest.h \
-    core/stage3dialog.h
+    core/stage3dialog.h \
+    lives.h
 
 FORMS += \
         dialog.ui

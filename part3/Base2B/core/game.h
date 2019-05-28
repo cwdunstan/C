@@ -14,6 +14,8 @@ public:
     ~Game() = default;
 
     void setStage(std::unique_ptr<GameStage> stage);
+    void setLives(int lives);
+    int getLives();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
@@ -22,6 +24,7 @@ protected:
 
 private:
     std::unique_ptr<GameStage> stage;
+    int playerLives;
 
 public slots:
     void nextFrame();
