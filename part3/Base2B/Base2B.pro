@@ -61,7 +61,8 @@ SOURCES += \
     objects/player/movablestickman.cpp \
     core/testing/testcases/movetest.cpp \
     core/stage3dialog.cpp \
-    lives.cpp
+    lives.cpp \
+    core/level.cpp
 
 HEADERS += \
     objects/entities/colouredentity.h \
@@ -94,7 +95,8 @@ HEADERS += \
     objects/player/movablestickman.h \
     core/testing/testcases/movetest.h \
     core/stage3dialog.h \
-    lives.h
+    lives.h \
+    core/level.h
 
 FORMS += \
         dialog.ui

@@ -29,5 +29,6 @@ release/movablestickman.o
 release/movetest.o
 release/stage3dialog.o
 release/lives.o
+release/level.o
 release/qrc_resources.o
 release/moc_game.o

@@ -60,8 +60,10 @@ int main(int argc, char *argv[]) {
     StageFactory::Config stageConfig;
     vector<pair<unique_ptr<Entity>, int>> obstacles;
     vector<pair<unique_ptr<Entity>, int>> obstacles2;
+    vector<level> levels;
     stageConfig.obstacles = &obstacles;
     stageConfig.obstacles2 = &obstacles2;
+    stageConfig.levels = &levels;
     stageConfig.game = &game;
 
     // Read config file and set basic game attributes
@@ -160,6 +162,11 @@ int main(int argc, char *argv[]) {
             b->getCoordinate().setYCoordinate(135);
             obstacles.push_back(make_pair(move(b),300));
 
+            level* newLevel = new first;
+            newLevel->setTemp(1);
+            levels.push_back(move(*newLevel));
+
+
         } else if (setting == "obstacles2:") {
             QStringList parts = value.split("|");
             EntityFactory factory;
@@ -189,6 +196,11 @@ int main(int argc, char *argv[]) {
                 // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
                 obstacles2.push_back(make_pair(move(e), sl.at(3).toInt()));
             }
+
+            level* newLevel = new first;
+            newLevel->setTemp(1);
+            levels.push_back(move(*newLevel));
+
         } else if (setting == "testMode:") {
             stageConfig.testMode = value.compare("on") == 0;
         } else if (setting == "lives:") {

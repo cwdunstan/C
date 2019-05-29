@@ -2,6 +2,7 @@
 #define STAGE3DIALOG_H
 
 #include "dialog.h"
+#include "level.h"
 
 class Stage3Dialog : public Dialog {
 public:
@@ -12,9 +13,10 @@ public:
      * @param factory An entity factory for producing obstacles
      * @param obstacleLayout Pairs of (obstacle, space_until_next_obstacle) describing the sequence in which obstacles will be spawned
      */
-    Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout);
+    Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout, std::vector<level> stageLevels);
 
     void update();
+    void setLevel(level* newLevel);
 
 
 protected:
@@ -25,6 +27,8 @@ private:
     int distanceToSpawn;
     bool hasCollided;
     int nextObstacle;
+//    level* currLevel;
+    std::vector<level> stageLevels;
 };
 
 #endif // STAGE3DIALOG_H

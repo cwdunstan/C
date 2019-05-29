@@ -1,9 +1,10 @@
 #include "stage3dialog.h"
 #include "collision.h"
 #include "debugrenderer.h"
+#include <QMessageBox>
 
-Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout) :
-    Dialog(game, std::move(stickman), std::move(factory)), obstacleLayout(std::move(obstacleLayout)), distanceToSpawn(0), nextObstacle(0) {
+Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout, std::vector<level> stageLevels) :
+    Dialog(game, std::move(stickman), std::move(factory)), obstacleLayout(std::move(obstacleLayout)), distanceToSpawn(0), nextObstacle(0), stageLevels(std::move(stageLevels)) {
 
 }
 
@@ -34,6 +35,7 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
     nextObstacle = (nextObstacle + 1) % obstacleLayout.size();
 }
 
+
 void Stage3Dialog::update() {
     stickman->update(obstacles);
     if (!stickman->isColliding() && stickman->isMoving()) {
@@ -51,9 +53,13 @@ void Stage3Dialog::update() {
         speedUp(counter);
         spawnObstacles(counter);
     }
+    QMessageBox msgBox;
+     msgBox.setText(QString::number(stageLevels[0].getTemp()));
     if (stickman->isMoving() && stickman->isColliding()) {
         if (!hasCollided) {
             lives.decrement();
+
+            msgBox.exec();
             if (lives.getLives() == 0) {
 
             }
@@ -73,4 +79,7 @@ void Stage3Dialog::update() {
 }
 
 
-
+void Stage3Dialog::setLevel(level *newLevel){
+//    delete currLevel;
+//    this->currLevel=newLevel;
+}
