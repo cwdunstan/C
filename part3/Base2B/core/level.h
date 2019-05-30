@@ -16,7 +16,6 @@ public:
 protected:
     int temp;
 private:
-    level* currLevel;
     level* nextLevel;
     unsigned int startScore;
 

@@ -26,8 +26,9 @@ private:
     int distanceToSpawn;
     bool hasCollided;
     int nextObstacle;
-//    level* currLevel;
     std::vector<level> stageLevels;
+    level* currLevel;
+
 };
 
 #endif // STAGE3DIALOG_H
