@@ -12,7 +12,7 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
     // Check if it's time to spawn an obstacle
     if (currLevel->obstacleLayout.size() == 0 || distanceToSpawn > 0) return;
 
-    auto &e = obstacleLayout[nextObstacle];
+    auto &e = currLevel->obstacleLayout[nextObstacle];
 
     // Check for collisions between next obstacle and current obstacles
     bool isOverlapping = false;
@@ -27,7 +27,7 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
     if (!isOverlapping) {
         auto obs = e.first->clone();
         obs->setVelocity(background.getVelocity());
-        addObstacle(std::move(obs));
+        addObstacle(std::move(obs) );
     }
 
     // Set next obstacle in sequence
@@ -38,6 +38,13 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
 
 void Stage3Dialog::update() {
     stickman->update(obstacles);
+    QMessageBox msgBox;
+
+    auto &e = currLevel->obstacleLayout[0];
+    msgBox.setText(QString::number(e.first->height()));
+    msgBox.exec();
+
+
     if (!stickman->isColliding() && stickman->isMoving()) {
         hasCollided=false;
         // Reduce distance to next obstacle
@@ -53,7 +60,6 @@ void Stage3Dialog::update() {
         speedUp(counter);
         spawnObstacles(counter);
     }
-    QMessageBox msgBox;
 
     if (stickman->isMoving() && stickman->isColliding()) {
         if (!hasCollided) {
