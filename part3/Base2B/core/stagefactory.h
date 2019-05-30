@@ -22,7 +22,6 @@ public:
         std::string size;
         Game *game;
         std::vector<std::pair<std::unique_ptr<Entity>, int>> *obstacles;
-        std::vector<std::pair<std::unique_ptr<Entity>, int>> *obstacles2;
         std::vector<level> *levels;
 
     };

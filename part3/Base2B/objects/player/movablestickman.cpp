@@ -36,9 +36,11 @@ void MovableStickman::handleInput(QKeyEvent &event) {
         }
         if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
             movingRight=true;
+            movingLeft=false;
         }
         if (event.key() == Qt::Key_Left && !event.isAutoRepeat()) {
             movingLeft=true;
+            movingRight=false;
 
         }
     }
@@ -46,9 +48,11 @@ void MovableStickman::handleInput(QKeyEvent &event) {
     if(event.type() == QEvent::KeyRelease) {
         if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
             movingRight=false;
+            movingLeft=false;
         }
         if (event.key() == Qt::Key_Left && !event.isAutoRepeat()) {
             movingLeft=false;
+            movingRight=false;
         }
     }
 

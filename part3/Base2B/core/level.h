@@ -6,15 +6,15 @@
 class level
 {
 public:
-    level();
+    level(std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout);
 
     void setNextLevel(level * nextLevel);
     int getTemp();
     void setTemp(int n);
+    std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout;
 
 protected:
     int temp;
-    std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout;
 private:
     level* currLevel;
     level* nextLevel;

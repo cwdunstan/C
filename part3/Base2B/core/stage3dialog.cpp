@@ -54,7 +54,7 @@ void Stage3Dialog::update() {
         spawnObstacles(counter);
     }
     QMessageBox msgBox;
-     msgBox.setText(QString::number(stageLevels[0].getTemp()));
+     msgBox.setText(QString::number(stageLevels[0].obstacleLayout.size()));
     if (stickman->isMoving() && stickman->isColliding()) {
         if (!hasCollided) {
             lives.decrement();
@@ -78,8 +78,3 @@ void Stage3Dialog::update() {
     }
 }
 
-
-void Stage3Dialog::setLevel(level *newLevel){
-//    delete currLevel;
-//    this->currLevel=newLevel;
-}
