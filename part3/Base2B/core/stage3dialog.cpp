@@ -40,9 +40,6 @@ void Stage3Dialog::update() {
     stickman->update(obstacles);
     QMessageBox msgBox;
 
-    auto &e = currLevel->obstacleLayout[0];
-    msgBox.setText(QString::number(e.first->height()));
-    msgBox.exec();
 
 
     if (!stickman->isColliding() && stickman->isMoving()) {
@@ -64,9 +61,7 @@ void Stage3Dialog::update() {
     if (stickman->isMoving() && stickman->isColliding()) {
         if (!hasCollided) {
             lives.decrement();
-            msgBox.setText(QString::number(currLevel->obstacleLayout.size()));
-            msgBox.exec();
-            currLevel->obstacleLayout.pop_back();
+            spawnObstacles(0);
             if (lives.getLives() == 0) {
 
             }

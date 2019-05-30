@@ -155,13 +155,24 @@ int main(int argc, char *argv[]) {
 
                 // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
                 obstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
-                obstacles2.push_back(make_pair(move(e), sl.at(3).toInt()));
+
+                auto b = factory.getEntity("bird");
+                b = make_unique<ColouredEntity>(move(b), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
+                b->setSize(sl.at(0).toInt(), sl.at(1).toInt());
+                b->getCoordinate().setYCoordinate(sl.at(2).toInt());
+                int flyRateb = sl.at(7).toInt();
+                if (flyRateb != 0) {
+                    b = make_unique<FlyingEntity>(move(b), flyRate);
+                }
+                obstacles2.push_back(make_pair(move(b), sl.at(3).toInt()));
 
             }
-            auto b = factory.getEntity("Checkpoint");
-            b->getCoordinate().setYCoordinate(135);
-            obstacles.push_back(make_pair(move(b),300));
-            obstacles2.push_back(make_pair(move(b),300));
+            auto c = factory.getEntity("Checkpoint");
+            c->getCoordinate().setYCoordinate(135);
+            obstacles.push_back(make_pair(move(c),300));
+            auto d = factory.getEntity("Checkpoint");
+            d->getCoordinate().setYCoordinate(135);
+            obstacles2.push_back(make_pair(move(d),300));
             if(stageConfig.stage==3){
                 level* newLevel = new level(move(obstacles2));
                 newLevel->setTemp(1);
