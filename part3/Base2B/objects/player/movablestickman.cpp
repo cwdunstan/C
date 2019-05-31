@@ -76,6 +76,7 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
             int by = other->getCoordinate().getYCoordinate();
             if (col.down && jumpVelocity < 0) {
                 // Hitting obstacle from above
+
                 jumpVelocity = 0;
                 grounded = true;
                 jumpCount = 0;

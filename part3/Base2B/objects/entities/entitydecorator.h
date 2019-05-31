@@ -12,6 +12,9 @@ public:
     void collisionLogic(Stickman &player);
 
     Coordinate &getCoordinate();
+    Coordinate &getStartCoordinate();
+    void setOffset(int distance);
+    int getOffset();
     QPixmap &getSprite();
     int width();
     int height();

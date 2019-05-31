@@ -28,6 +28,18 @@ Coordinate &EntityDecorator::getCoordinate() {
     return entity->getCoordinate();
 }
 
+Coordinate &EntityDecorator::getStartCoordinate() {
+    return entity->getStartCoordinate();
+}
+
+void EntityDecorator::setOffset(int distance) {
+    entity->setOffset(distance);
+}
+
+int EntityDecorator::getOffset() {
+    return entity->getOffset();
+}
+
 void EntityDecorator::setVelocity(int v) {
     entity->setVelocity(v);
 }

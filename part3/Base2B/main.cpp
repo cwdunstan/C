@@ -175,7 +175,6 @@ int main(int argc, char *argv[]) {
             obstacles2.push_back(make_pair(move(d),300));
             if(stageConfig.stage==3){
                 level* newLevel = new level(move(obstacles2));
-                newLevel->setTemp(1);
                 levels.push_back(move(*newLevel));
             }
 

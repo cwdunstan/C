@@ -4,6 +4,7 @@
 Entity::Entity(std::string name, Coordinate coordinate, int velocity):
     name(name),
     coordinate(coordinate),
+    startCoordinate(coordinate),
     velocity(velocity),
     widthOverride(-1),
     heightOverride(-1) {
@@ -18,6 +19,18 @@ std::unique_ptr<Entity> Entity::clone() {
 
 Coordinate &Entity::getCoordinate() {
     return coordinate;
+}
+
+Coordinate &Entity::getStartCoordinate() {
+    return startCoordinate;
+}
+
+void Entity::setOffset(int distance) {
+    offset = distance;
+}
+
+int Entity::getOffset() {
+    return offset;
 }
 
 void Entity::setVelocity(int v) {

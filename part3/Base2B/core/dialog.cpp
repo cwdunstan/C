@@ -99,7 +99,7 @@ void Dialog::renderObstacles(Renderer &renderer, unsigned int counter) {
     for (auto &o: obstacles) {
         o->render(renderer, counter);
         if (o->getCoordinate().getQtRenderingXCoordinate() + o->width() < -600) {
-            deleteObstacle = true;
+            //deleteObstacle = true;
         }
     }
     if (deleteObstacle) {

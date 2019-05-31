@@ -22,6 +22,9 @@ public:
     virtual void render(Renderer &renderer, unsigned int time);
 
     virtual Coordinate &getCoordinate();
+    virtual Coordinate &getStartCoordinate();
+    virtual void setOffset(int distance);
+    virtual int getOffset();
     virtual QPixmap &getSprite();
     virtual int width();
     virtual int height();
@@ -35,6 +38,8 @@ public:
 protected:
     std::string name;
     Coordinate coordinate;
+    Coordinate startCoordinate;
+    int offset;
     int velocity;
     QPixmap sprite;
     int widthOverride;
