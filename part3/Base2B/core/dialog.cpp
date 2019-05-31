@@ -129,6 +129,12 @@ void Dialog::addObstacle(std::unique_ptr<Entity> obstacle) {
     obstacles.push_back(std::move(obstacle));
 }
 
+void Dialog::clearObstacle() {
+    while(obstacles.size()>0){
+        obstacles.pop_back();
+    }
+}
+
 // Incrementally speed up the scrolling speed
 void Dialog::speedUp(unsigned int counter) {
     if (counter % 600 == 0) {

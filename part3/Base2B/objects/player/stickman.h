@@ -26,6 +26,9 @@ public:
 
     void render(Renderer &renderer, unsigned int time);
 
+    bool getCheckpoint();
+    void setCheckpoint(bool set);
+
     virtual void handleInput(QKeyEvent &event);
     virtual void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 
@@ -41,6 +44,7 @@ protected:
     bool colliding;
     bool movingLeft=false;
     bool movingRight=false;
+    bool checkpoint;
 
 private:
     Coordinate coordinate;

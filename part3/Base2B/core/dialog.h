@@ -32,6 +32,7 @@ public:
 protected:
     virtual void spawnObstacles(unsigned int counter);
     void addObstacle(std::unique_ptr<Entity> obstacle);
+    void clearObstacle();
     void speedUp(unsigned int counter);
 
     void renderBackground(Renderer &renderer, unsigned int counter);

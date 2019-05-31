@@ -61,6 +61,13 @@ bool Stickman::isMovingLeft() {
     return movingLeft;
 }
 
+bool Stickman::getCheckpoint() {
+    return this->checkpoint;
+}
+void Stickman::setCheckpoint(bool set) {
+    checkpoint=set;
+}
+
 int Stickman::width() {
     return sprite.width();
 }

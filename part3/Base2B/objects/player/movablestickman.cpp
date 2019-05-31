@@ -74,6 +74,7 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
         }
         if (col.overlapped) {
             int by = other->getCoordinate().getYCoordinate();
+
             if (col.down && jumpVelocity < 0) {
                 // Hitting obstacle from above
 
@@ -81,16 +82,22 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 grounded = true;
                 jumpCount = 0;
                 newY = by + other->height() + 1;
+                if (other->getName().compare("Checkpoint")==0) {
+                    setCheckpoint(true);
+                }
             } else if (col.up) {
                 // Hitting obstacle from below
                 jumpVelocity = 0;
                 newY = by - height() - 1;
+                if (other->getName().compare("Checkpoint")==0) {
+                     setCheckpoint(true);
+                }
             } else {
                 // Hidding obstacle from the side
-                if (!other->getName().compare("Checkpoint")==0) {
+                if (other->getName().compare("Checkpoint")==1) {
                     colliding = true;
                 } else {
-
+                    setCheckpoint(true);
                 }
             }
         }

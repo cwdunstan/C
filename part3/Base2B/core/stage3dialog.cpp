@@ -11,7 +11,7 @@ Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::
 void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
     // Check if it's time to spawn an obstacle
     if (currLevel->obstacleLayout.size() == 0 || distanceToSpawn > 0) return;
-    if(nextObstacle<obstacleLayout.size()) {
+    if(nextObstacle<currLevel->obstacleLayout.size()) {
         auto &e = currLevel->obstacleLayout[nextObstacle];
 
         // Check for collisions between next obstacle and current obstacles
@@ -40,7 +40,14 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
 
 void Stage3Dialog::update() {
     stickman->update(obstacles);
+    if (stickman->getCheckpoint()) {
+        clearObstacle();
+        distanceToSpawn=0;
+        nextObstacle=0;
+        currLevel=&this->stageLevels[1];
+        stickman->setCheckpoint(false);
 
+    }
     if (!stickman->isColliding() && stickman->isMoving()) {
         hasCollided=false;
         // Reduce distance to next obstacle
@@ -59,13 +66,11 @@ void Stage3Dialog::update() {
 
     if (stickman->isMoving() && stickman->isColliding()) {
         if (!hasCollided) {
+            stickman->setMoving(false);
             //reset obstacles
-            while(obstacles.size()>0){
-                obstacles.pop_back();
-            }
+            clearObstacle();
             distanceToSpawn=0;
             nextObstacle=0;
-
             //decrement lives
             lives.decrement();
 

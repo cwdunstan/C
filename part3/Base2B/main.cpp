@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
     StageFactory::Config stageConfig;
     vector<pair<unique_ptr<Entity>, int>> obstacles;
     vector<pair<unique_ptr<Entity>, int>> obstacles2;
+    vector<pair<unique_ptr<Entity>, int>> obstacles3;
     vector<level> levels;
     stageConfig.obstacles = &obstacles;
     stageConfig.levels = &levels;
@@ -178,7 +179,46 @@ int main(int argc, char *argv[]) {
                 levels.push_back(move(*newLevel));
             }
 
-        } else if (setting == "testMode:") {
+        } else if (setting == "obstacles2:") {
+            QStringList parts = value.split("|");
+            EntityFactory factory;
+            for (QString &s : parts) {
+                QStringList sl = s.split(",");
+
+                // Make sure each obstacle config has 8 integer parameters
+                bool ok = true;
+                for (int i = 0; i < sl.length() && ok; i++) {
+                    ok = isNumber(sl.at(i));
+                }
+                if (sl.length() != 8 || !ok) {
+                    cout << "Invalid obstacle values. Terminating.";
+                    return 0;
+                }
+
+                // Make a coloured bird obstacle according to the config
+                auto e = factory.getEntity("bird");
+                e = make_unique<ColouredEntity>(move(e), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
+                e->setSize(sl.at(0).toInt(), sl.at(1).toInt());
+                e->getCoordinate().setYCoordinate(sl.at(2).toInt());
+                int flyRate = sl.at(7).toInt();
+                if (flyRate != 0) {
+                    e = make_unique<FlyingEntity>(move(e), flyRate);
+                }
+
+                // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
+                obstacles3.push_back(make_pair(move(e), sl.at(3).toInt()));
+
+            }
+            auto c = factory.getEntity("Checkpoint");
+            c->getCoordinate().setYCoordinate(135);
+            obstacles3.push_back(make_pair(move(c),300));
+
+            if(stageConfig.stage==3){
+                level* newLevel = new level(move(obstacles3));
+                levels.push_back(move(*newLevel));
+            }
+
+        }else if (setting == "testMode:") {
             stageConfig.testMode = value.compare("on") == 0;
         } else if (setting == "lives:") {
             if (!isNumber(value.toStdString())) {
