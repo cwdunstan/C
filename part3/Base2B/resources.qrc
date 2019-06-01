@@ -32,5 +32,19 @@
         <file>sprites/Checkpoint1.png</file>
         <file>sprites/Powerup0.png</file>
         <file>sprites/Powerup1.png</file>
+        <file>sprites/h0.png</file>
+        <file>sprites/h1.png</file>
+        <file>sprites/h2.png</file>
+        <file>sprites/h3.png</file>
+        <file>sprites/h4.png</file>
+        <file>sprites/h5.png</file>
+        <file>sprites/h6.png</file>
+        <file>sprites/h7.png</file>
+        <file>sprites/health0.png</file>
+        <file>sprites/health1.png</file>
+        <file>sprites/points0.png</file>
+        <file>sprites/points1.png</file>
+        <file>sprites/speedBoost0.png</file>
+        <file>sprites/speedBoost1.png</file>
     </qresource>
 </RCC>

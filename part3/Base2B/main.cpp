@@ -221,8 +221,8 @@ int main(int argc, char *argv[]) {
                 cout << "Lives must be set to a positive integer. Terminating";
                 return 0;
             }
-            if (value.toInt()<1 || value.toInt()>9) {
-                cout << "Lives must be between 1 and 9. Terminating";
+            if (value.toInt()<1 || value.toInt()>8) {
+                cout << "Lives must be between 1 and 8. Terminating";
                 return 0;
             }
             game.setLives(value.toInt());

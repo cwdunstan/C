@@ -2,8 +2,8 @@
 
 Lives::Lives(int startingLives):
     currLives(startingLives) {
-    for (int i = 0; i < 10; i++) {
-        std::string spritePath = ":sprites/" + std::to_string(i) + ".png";
+    for (int i = 0; i < 8; i++) {
+        std::string spritePath = ":sprites/h" + std::to_string(i-1) + ".png";
         QPixmap sprite(QString::fromStdString(spritePath));
         digits[i] = sprite;
     }
