@@ -44,9 +44,9 @@ void Stage3Dialog::update() {
     stickman->update(obstacles);
     score.setScore(stickman->getScore());
 
+    //change state to next  level if checkpoint reached
     if (stickman->getCheckpoint()) {
         resetFrame();
-        //change state to next  level if checkpoint reached
         if(currLevel->getIndex()+1<stageLevels.size()){
             this->stageLevels[currLevel->getIndex()+1].setStartScore(score.getScore());
             currLevel=&this->stageLevels[currLevel->getIndex()+1];
@@ -55,6 +55,14 @@ void Stage3Dialog::update() {
             exit(0);
         }
     }
+    //increase lives is powerup gained
+    if(stickman->getExtraLife()){
+        if(lives.getLives()<8){
+            lives.increment();
+        }
+        stickman->setExtraLife(false);
+    }
+
     if (!stickman->isColliding() && stickman->isMoving()) {
         hasCollided=false;
         // Reduce distance to next obstacle

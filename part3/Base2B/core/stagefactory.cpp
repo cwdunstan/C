@@ -62,7 +62,7 @@ std::unique_ptr<GameStage> StageFactory::createStage() {
             player->setSize(config.size);
             player->setCoordinate(config.coord);
             player->setSprite(":sprites/sprite0.png");
-
+            player->setExtraLife(false);
             auto factory = std::make_unique<EntityFactory>();
             factory->setVelocity(config.velocity);
 

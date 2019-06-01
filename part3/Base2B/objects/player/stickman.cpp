@@ -80,6 +80,13 @@ void Stickman::setCheckpoint(bool set) {
     checkpoint=set;
 }
 
+bool Stickman::getExtraLife() {
+    return this->extraLife;
+}
+void Stickman::setExtraLife(bool set) {
+    extraLife=set;
+}
+
 int Stickman::width() {
     return sprite.width();
 }

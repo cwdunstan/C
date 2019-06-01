@@ -32,6 +32,8 @@ public:
 
     bool getCheckpoint();
     void setCheckpoint(bool set);
+    bool getExtraLife();
+    void setExtraLife(bool set);
     void setScore(int score);
     int getScore();
     virtual void handleInput(QKeyEvent &event);
@@ -51,6 +53,7 @@ protected:
     bool movingLeft=false;
     bool movingRight=false;
     bool checkpoint;
+    bool extraLife;
 
 private:
     Coordinate coordinate;

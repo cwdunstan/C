@@ -24,6 +24,7 @@ public:
     bool canJump();
     void handleInput(QKeyEvent &event);
     void update(std::vector<std::unique_ptr<Entity>> &obstacles);
+    void handleObstacles (std::unique_ptr<Entity> &obs);
 
 protected:
     bool powered;

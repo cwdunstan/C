@@ -156,9 +156,24 @@ int main(int argc, char *argv[]) {
                     // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
                     obstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
                 } else {
-                    auto p = factory.getEntity("Powerup");
-                    p->getCoordinate().setYCoordinate(sl.at(1).toInt());
-                    obstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    //generate powerup depending on ID provided
+                    if (sl.at(0).toInt()==0){
+                        auto p = factory.getEntity("Powerup");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        obstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    } else if (sl.at(0).toInt()==1) {
+                        auto p = factory.getEntity("speedBoost");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        obstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    } else if (sl.at(0).toInt()==2) {
+                        auto p = factory.getEntity("health");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        obstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    } else if (sl.at(0).toInt()==3) {
+                        auto p = factory.getEntity("points");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        obstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    }
                 }
             }
             if(stageConfig.stage==3){

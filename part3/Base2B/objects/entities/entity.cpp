@@ -136,5 +136,11 @@ Checkpoint::Checkpoint(Coordinate coordinate, int velocity):
 PowerUp::PowerUp(Coordinate coordinate, int velocity):
     Entity("Powerup", coordinate, velocity) {}
 
+speedBoost::speedBoost(Coordinate coordinate, int velocity):
+    Entity("speedBoost", coordinate, velocity) {}
 
+health::health(Coordinate coordinate, int velocity):
+    Entity("health", coordinate, velocity) {}
 
+points::points(Coordinate coordinate, int velocity):
+    Entity("points", coordinate, velocity) {}

@@ -84,6 +84,20 @@ public:
     PowerUp(Coordinate coordinate, int velocity);
 };
 
+class speedBoost: public Entity {
+public:
+    speedBoost(Coordinate coordinate, int velocity);
+};
+
+class health: public Entity {
+public:
+    health(Coordinate coordinate, int velocity);
+};
+
+class points: public Entity {
+public:
+    points(Coordinate coordinate, int velocity);
+};
 
 
 #endif // OBSTACLE_H

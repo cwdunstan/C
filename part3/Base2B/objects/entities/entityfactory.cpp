@@ -40,5 +40,17 @@ std::unique_ptr<Entity> EntityFactory::getEntity(std::string name) {
         Coordinate coordinate(800, 160, 450);
         auto PU = std::make_unique<PowerUp>(coordinate, velocity);
         return std::move(PU);
+    } else if (name == "speedBoost") {
+        Coordinate coordinate(800, 160, 450);
+        auto PU = std::make_unique<speedBoost>(coordinate, velocity);
+        return std::move(PU);
+    } else if (name == "health") {
+        Coordinate coordinate(800, 160, 450);
+        auto PU = std::make_unique<health>(coordinate, velocity);
+        return std::move(PU);
+    } else if (name == "points") {
+        Coordinate coordinate(800, 160, 450);
+        auto PU = std::make_unique<points>(coordinate, velocity);
+        return std::move(PU);
     }
 }

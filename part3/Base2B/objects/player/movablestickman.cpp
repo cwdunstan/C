@@ -87,10 +87,8 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by + other->height() + 1;
                 if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
-                } else if (other->getName().compare("Powerup")==0) {
-                    if (!powered) {
-                        setPower("titan");
-                    }
+                } else if (other->getName().compare("bird")==1) {
+                    handleObstacles(other);
                     obstacles.erase(obstacles.begin()+i);
                 } else {
                     if (!other->getPointsGiven()) {
@@ -104,10 +102,9 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by - height() - 1;
                 if (other->getName().compare("Checkpoint")==0) {
                      setCheckpoint(true);
-                } else if (other->getName().compare("Powerup")==0) {
-                    if (!powered) {
-                        setPower("titan");
-                    }
+                } else if (other->getName().compare("bird")==1) {
+                    handleObstacles(other);
+                    obstacles.erase(obstacles.begin()+i);
                 }
                 obstacles.erase(obstacles.begin()+i);
                 highscore=highscore+2;
@@ -117,10 +114,8 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
                     setPower("normal");
-                } else if (other->getName().compare("Powerup")==0) {
-                    if (!powered) {
-                        setPower("titan");
-                    }
+                } else if (other->getName().compare("bird")==1) {
+                    handleObstacles(other);
                     obstacles.erase(obstacles.begin()+i);
                 } else if (this->getSize()=="giant") {
                     obstacles.erase(obstacles.begin()+i);
@@ -154,8 +149,35 @@ void MovableStickman::setPower(std::string type) {
         powered=true;
 
     } else if (type == "normal") {
+        if(getSize()=="tiny") {
+            maxJumpCount--;
+        }
         setSize("normal");
         powered=false;
 
+    } else if (type =="speed") {
+        setSize("tiny");
+        powered=true;
+        this->maxJumpCount++;
     }
+}
+
+void MovableStickman::handleObstacles(std::unique_ptr<Entity> &obs) {
+    if (obs->getName().compare("Checkpoint")==0) {
+        setCheckpoint(true);
+        setPower("normal");
+    } else if (obs->getName().compare("Powerup")==0) {
+        if (!powered) {
+            setPower("titan");
+        }
+    } else if (obs->getName().compare("speedBoost")==0) {
+        if (!powered) {
+            setPower("speed");
+        }
+    } else if (obs->getName().compare("health")==0) {
+       setExtraLife(true);
+    } else if (obs->getName().compare("points")==0) {
+        highscore=highscore+50;
+     }
+
 }
