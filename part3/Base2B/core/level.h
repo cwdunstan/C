@@ -9,8 +9,11 @@ public:
     level(std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout);
 
     void setNextLevel(level * nextLevel);
+    level* getNextLevel();
     int getStartScore();
     void setStartScore(int set);
+    int getIndex();
+    void setIndex(int set);
 
     std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout;
 
@@ -18,12 +21,9 @@ public:
 
 protected:
     int startScore;
-
+    int index;
 private:
     level* nextLevel;
-
-
-
 
 };
 

@@ -9,6 +9,7 @@ Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::
     currLevel->setStartScore(0);
     score.setScore(currLevel->getStartScore());
 
+
 }
 
 void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
@@ -44,11 +45,19 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
 void Stage3Dialog::update() {
     stickman->update(obstacles);
     score.setScore(stickman->getScore());
+//    QMessageBox message;
+//    message.setText(QString::number(stageLevels.size()));
+//    message.exec();
     if (stickman->getCheckpoint()) {
         resetFrame();
-        this->stageLevels[1].setStartScore(score.getScore());
-        currLevel=&this->stageLevels[1];
-        stickman->setCheckpoint(false);
+        //change state to next  level if checkpoint reached
+        if(currLevel->getIndex()+1<stageLevels.size()){
+            this->stageLevels[currLevel->getIndex()+1].setStartScore(score.getScore());
+            currLevel=&this->stageLevels[currLevel->getIndex()+1];
+            stickman->setCheckpoint(false);
+        } else {
+            exit(0);
+        }
     }
     if (!stickman->isColliding() && stickman->isMoving()) {
         hasCollided=false;

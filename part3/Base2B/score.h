@@ -10,7 +10,6 @@
 class Score {
 public:
     Score();
-
     void increment();
     void setScore (int set);
     int getScore ();

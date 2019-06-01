@@ -60,7 +60,6 @@ int main(int argc, char *argv[]) {
     StageFactory::Config stageConfig;
     vector<pair<unique_ptr<Entity>, int>> obstacles;
     vector<pair<unique_ptr<Entity>, int>> obstacles2;
-    vector<pair<unique_ptr<Entity>, int>> obstacles3;
     vector<level> levels;
     stageConfig.obstacles = &obstacles;
     stageConfig.levels = &levels;
@@ -131,6 +130,7 @@ int main(int argc, char *argv[]) {
         } else if (setting == "obstacles:") {
             QStringList parts = value.split("|");
             EntityFactory factory;
+
             for (QString &s : parts) {
                 QStringList sl = s.split(",");
 
@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
                 for (int i = 0; i < sl.length() && ok; i++) {
                     ok = isNumber(sl.at(i));
                 }
-                if (sl.length() != 8 || !ok) {
+                if (sl.length() <8 || !ok) {
                     cout << "Invalid obstacle values. Terminating.";
                     return 0;
                 }
@@ -176,10 +176,13 @@ int main(int argc, char *argv[]) {
             obstacles2.push_back(make_pair(move(d),300));
             if(stageConfig.stage==3){
                 level* newLevel = new level(move(obstacles2));
+                newLevel->setStartScore(0);
+                newLevel->setIndex(levels.size());
                 levels.push_back(move(*newLevel));
             }
 
-        } else if (setting == "obstacles2:") {
+        } else if (setting == "newLevel:") {
+            vector<pair<unique_ptr<Entity>, int>> newObstacles;
             QStringList parts = value.split("|");
             EntityFactory factory;
             for (QString &s : parts) {
@@ -206,15 +209,16 @@ int main(int argc, char *argv[]) {
                 }
 
                 // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
-                obstacles3.push_back(make_pair(move(e), sl.at(3).toInt()));
+                newObstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
 
             }
             auto c = factory.getEntity("Checkpoint");
             c->getCoordinate().setYCoordinate(135);
-            obstacles3.push_back(make_pair(move(c),300));
+            newObstacles.push_back(make_pair(move(c),300));
 
             if(stageConfig.stage==3){
-                level* newLevel = new level(move(obstacles3));
+                level* newLevel = new level(move(newObstacles));
+                newLevel->setIndex(levels.size());
                 levels.push_back(move(*newLevel));
             }
 
