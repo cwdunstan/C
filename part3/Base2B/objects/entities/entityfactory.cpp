@@ -34,7 +34,11 @@ std::unique_ptr<Entity> EntityFactory::getEntity(std::string name) {
         return std::move(randomCloud);
     } else if (name == "Checkpoint") {
         Coordinate coordinate(800, 160, 450);
-        auto randomCP = std::make_unique<Checkpoint>(coordinate, velocity);
-        return std::move(randomCP);
+        auto CP = std::make_unique<Checkpoint>(coordinate, velocity);
+        return std::move(CP);
+    } else if (name == "Powerup") {
+        Coordinate coordinate(800, 160, 450);
+        auto PU = std::make_unique<PowerUp>(coordinate, velocity);
+        return std::move(PU);
     }
 }

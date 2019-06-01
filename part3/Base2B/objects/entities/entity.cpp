@@ -133,8 +133,8 @@ void Cloud::randomiseHeight() {
 Checkpoint::Checkpoint(Coordinate coordinate, int velocity):
     Entity("Checkpoint", coordinate, velocity) {}
 
-// Clouds can spawn at random height in the sky
-
+PowerUp::PowerUp(Coordinate coordinate, int velocity):
+    Entity("Powerup", coordinate, velocity) {}
 
 
 

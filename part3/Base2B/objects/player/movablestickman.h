@@ -19,10 +19,15 @@ public:
 
     void setLives(int Lives);
     int getLives();
+    void setPower(std::string type);
     void jump();
     bool canJump();
     void handleInput(QKeyEvent &event);
     void update(std::vector<std::unique_ptr<Entity>> &obstacles);
+
+protected:
+    bool powered;
+    std::string startSize;
 
 private:
     bool contact;

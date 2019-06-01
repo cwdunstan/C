@@ -31,13 +31,15 @@ std::unique_ptr<GameStage> StageFactory::createStage() {
             // Stage 3 non-test mode
             auto player = std::make_unique<MovableStickman>(config.coord.getYCoordinate());
             player->setSize(config.size);
+            player->setStartSize(config.size);
             player->setCoordinate(config.coord);
             player->setSprite(":sprites/sprite0.png");
+            player->setScore(1);
 
             auto factory = std::make_unique<EntityFactory>();
             factory->setVelocity(config.velocity);
 
-            auto stage = std::make_unique<Stage3Dialog>(*config.game, std::move(player), std::move(factory), std::move(*config.obstacles), std::move(*config.levels));
+            auto stage = std::make_unique<Stage3Dialog>(*config.game, std::move(player), std::move(factory)/*, std::move(*config.obstacles)*/, std::move(*config.levels));
             genericDialogInitializer(*stage);
 
             return std::make_unique<SwapRendererStage>(std::move(stage));
@@ -90,7 +92,6 @@ void StageFactory::genericDialogInitializer(Dialog &dialog) {
     bg.setCoordinate(Coordinate(0, 150, 450));
     bg.setSprite(config.background);
     bg.setVelocity(config.velocity);
-
     dialog.setBackground(bg);
     dialog.setMoon(Moon(Coordinate(400, -140, 450), 181.0, 550));
 }

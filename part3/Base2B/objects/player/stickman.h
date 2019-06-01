@@ -19,6 +19,10 @@ public:
     void setCoordinate(Coordinate coordinate);
 
     void setSize(std::string size);
+    void setStartSize(std::string size);
+    std::string getSize();
+     std::string getStartSize();
+
 
     void setSprite(std::string path);
 
@@ -51,7 +55,9 @@ protected:
 private:
     Coordinate coordinate;
     std::string size;
+    std::string startSize;
     QPixmap sprite;
+
 };
 
 #endif // STICKMAN_H

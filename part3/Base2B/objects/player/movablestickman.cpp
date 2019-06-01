@@ -3,7 +3,7 @@
 #include <QMessageBox>
 
 MovableStickman::MovableStickman(int floor, int jumpImpulse, int maxJumpCount, int gravity) :
-    contact(false),floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
+   contact(false),floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
 
 }
 
@@ -32,7 +32,9 @@ int MovableStickman::getLives() {
 void MovableStickman::handleInput(QKeyEvent &event) {
     if(event.type() == QEvent::KeyPress) {
         if (event.key() == Qt::Key_Space && !event.isAutoRepeat() && canJump()) {
-            jump();
+            if(this->getSize().compare("giant")==1){
+                jump();
+            }
 
         }
         if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
@@ -65,7 +67,8 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
     colliding = false;
 
     // Check for collisions
-    for (auto &other : obstacles) {
+    for (int i=0; i<obstacles.size();i++) {
+        auto &other = obstacles[i];
         Collision::CollisonResult col = Collision::moveCast(*this, *other, 0, jumpVelocity);
         if (movingLeft) {
             other->setVelocity(-abs(other->getVelocity()));
@@ -84,6 +87,11 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by + other->height() + 1;
                 if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
+                } else if (other->getName().compare("Powerup")==0) {
+                    if (!powered) {
+                        setPower("titan");
+                    }
+                    obstacles.erase(obstacles.begin()+i);
                 } else {
                     if (!other->getPointsGiven()) {
                         highscore++;
@@ -96,13 +104,32 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by - height() - 1;
                 if (other->getName().compare("Checkpoint")==0) {
                      setCheckpoint(true);
+                } else if (other->getName().compare("Powerup")==0) {
+                    if (!powered) {
+                        setPower("titan");
+                    }
                 }
+                obstacles.erase(obstacles.begin()+i);
+                highscore=highscore+2;
+
             } else {
                 // Hidding obstacle from the side
-                if (other->getName().compare("Checkpoint")==1) {
-                    colliding = true;
-                } else {
+                if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
+                    setPower("normal");
+                } else if (other->getName().compare("Powerup")==0) {
+                    if (!powered) {
+                        setPower("titan");
+                    }
+                    obstacles.erase(obstacles.begin()+i);
+                } else if (this->getSize()=="giant") {
+                    obstacles.erase(obstacles.begin()+i);
+                    highscore=highscore+2;
+                } else {
+                    colliding = true;
+                    if(powered) {
+                        setPower("normal");
+                    }
                 }
             }
         }
@@ -119,4 +146,16 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
     ac.setYCoordinate(newY);
     jumpVelocity += gravity;
 
+}
+
+void MovableStickman::setPower(std::string type) {
+    if (type == "titan") {
+        setSize("giant");
+        powered=true;
+
+    } else if (type == "normal") {
+        setSize("normal");
+        powered=false;
+
+    }
 }

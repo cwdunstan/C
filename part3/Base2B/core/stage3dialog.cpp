@@ -3,11 +3,9 @@
 #include "debugrenderer.h"
 #include <QMessageBox>
 
-Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout, std::vector<level> stageLevels) :
-    Dialog(game, std::move(stickman), std::move(factory)), obstacleLayout(std::move(obstacleLayout)), distanceToSpawn(0), nextObstacle(0), stageLevels(std::move(stageLevels)) {
+Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<level> stageLevels) :
+    Dialog(game, std::move(stickman), std::move(factory)), distanceToSpawn(0), nextObstacle(0), stageLevels(std::move(stageLevels)) {
     currLevel=&this->stageLevels[0];
-    currLevel->setStartScore(0);
-    score.setScore(currLevel->getStartScore());
 
 
 }
@@ -45,9 +43,7 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
 void Stage3Dialog::update() {
     stickman->update(obstacles);
     score.setScore(stickman->getScore());
-//    QMessageBox message;
-//    message.setText(QString::number(stageLevels.size()));
-//    message.exec();
+
     if (stickman->getCheckpoint()) {
         resetFrame();
         //change state to next  level if checkpoint reached
@@ -102,7 +98,6 @@ void Stage3Dialog::resetFrame() {
     clearObstacle();
     distanceToSpawn=0;
     nextObstacle=0;
-    stickman->setMoving(false);
 
 }
 

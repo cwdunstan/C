@@ -12,6 +12,18 @@ void Stickman::setSize(std::string size) {
     this->size = size;
 }
 
+void Stickman::setStartSize(std::string size) {
+    this->startSize = size;
+}
+
+std::string Stickman::getSize() {
+    return size;
+}
+
+std::string Stickman::getStartSize() {
+    return startSize;
+}
+
 // Resize stickman based on size attribute
 void Stickman::setSprite(std::string path) {
     QPixmap newSprite(QString::fromStdString(path));

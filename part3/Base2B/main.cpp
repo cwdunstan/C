@@ -59,7 +59,6 @@ int main(int argc, char *argv[]) {
 
     StageFactory::Config stageConfig;
     vector<pair<unique_ptr<Entity>, int>> obstacles;
-    vector<pair<unique_ptr<Entity>, int>> obstacles2;
     vector<level> levels;
     stageConfig.obstacles = &obstacles;
     stageConfig.levels = &levels;
@@ -139,48 +138,40 @@ int main(int argc, char *argv[]) {
                 for (int i = 0; i < sl.length() && ok; i++) {
                     ok = isNumber(sl.at(i));
                 }
-                if (sl.length() <8 || !ok) {
+                if ((sl.length() !=8 && sl.length() !=3)  || !ok) {
                     cout << "Invalid obstacle values. Terminating.";
                     return 0;
                 }
 
                 // Make a coloured bird obstacle according to the config
-                auto e = factory.getEntity("bird");
-                e = make_unique<ColouredEntity>(move(e), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
-                e->setSize(sl.at(0).toInt(), sl.at(1).toInt());
-                e->getCoordinate().setYCoordinate(sl.at(2).toInt());
-                int flyRate = sl.at(7).toInt();
-                if (flyRate != 0) {
-                    e = make_unique<FlyingEntity>(move(e), flyRate);
+                if (sl.length() == 8) {
+                    auto e = factory.getEntity("bird");
+                    e = make_unique<ColouredEntity>(move(e), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
+                    e->setSize(sl.at(0).toInt(), sl.at(1).toInt());
+                    e->getCoordinate().setYCoordinate(sl.at(2).toInt());
+                    int flyRate = sl.at(7).toInt();
+                    if (flyRate != 0) {
+                        e = make_unique<FlyingEntity>(move(e), flyRate);
+                    }
+                    // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
+                    obstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
+                } else {
+                    auto p = factory.getEntity("Powerup");
+                    p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                    obstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
                 }
-
-                // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
-                obstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
-
-                auto b = factory.getEntity("bird");
-                b = make_unique<ColouredEntity>(move(b), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
-                b->setSize(sl.at(0).toInt(), sl.at(1).toInt());
-                b->getCoordinate().setYCoordinate(sl.at(2).toInt());
-                int flyRateb = sl.at(7).toInt();
-                if (flyRateb != 0) {
-                    b = make_unique<FlyingEntity>(move(b), flyRate);
-                }
-                obstacles2.push_back(make_pair(move(b), sl.at(3).toInt()));
-
             }
-            auto c = factory.getEntity("Checkpoint");
-            c->getCoordinate().setYCoordinate(135);
-            obstacles.push_back(make_pair(move(c),300));
-            auto d = factory.getEntity("Checkpoint");
-            d->getCoordinate().setYCoordinate(135);
-            obstacles2.push_back(make_pair(move(d),300));
             if(stageConfig.stage==3){
-                level* newLevel = new level(move(obstacles2));
-                newLevel->setStartScore(0);
+                //add checkpoint to end of level
+                auto c = factory.getEntity("Checkpoint");
+                c->getCoordinate().setYCoordinate(135);
+                obstacles.push_back(make_pair(move(c),300));
+
+                level* newLevel = new level(move(obstacles));
+                newLevel->setStartScore(1);
                 newLevel->setIndex(levels.size());
                 levels.push_back(move(*newLevel));
             }
-
         } else if (setting == "newLevel:") {
             vector<pair<unique_ptr<Entity>, int>> newObstacles;
             QStringList parts = value.split("|");
@@ -219,6 +210,7 @@ int main(int argc, char *argv[]) {
             if(stageConfig.stage==3){
                 level* newLevel = new level(move(newObstacles));
                 newLevel->setIndex(levels.size());
+                newLevel->setStartScore(1);
                 levels.push_back(move(*newLevel));
             }
 
