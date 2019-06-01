@@ -25,6 +25,7 @@ public:
     void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 
 private:
+    bool contact;
     int lives;
     int floor;
     int jumpImpulse;

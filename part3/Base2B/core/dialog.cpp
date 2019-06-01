@@ -48,7 +48,6 @@ void Dialog::update() {
     background.update();
     spawnObstacles(counter);
     speedUp(counter);
-    score.increment();
 }
 
 void Dialog::render(Renderer &renderer) {

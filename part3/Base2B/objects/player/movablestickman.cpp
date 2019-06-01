@@ -3,7 +3,7 @@
 #include <QMessageBox>
 
 MovableStickman::MovableStickman(int floor, int jumpImpulse, int maxJumpCount, int gravity) :
-    floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
+    contact(false),floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
 
 }
 
@@ -33,6 +33,7 @@ void MovableStickman::handleInput(QKeyEvent &event) {
     if(event.type() == QEvent::KeyPress) {
         if (event.key() == Qt::Key_Space && !event.isAutoRepeat() && canJump()) {
             jump();
+
         }
         if (event.key() == Qt::Key_Right && !event.isAutoRepeat()) {
             movingRight=true;
@@ -77,13 +78,17 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
 
             if (col.down && jumpVelocity < 0) {
                 // Hitting obstacle from above
-
                 jumpVelocity = 0;
                 grounded = true;
                 jumpCount = 0;
                 newY = by + other->height() + 1;
                 if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
+                } else {
+                    if (!other->getPointsGiven()) {
+                        highscore++;
+                        other->setPointsGiven(true);
+                    }
                 }
             } else if (col.up) {
                 // Hitting obstacle from below

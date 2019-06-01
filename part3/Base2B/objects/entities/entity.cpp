@@ -7,7 +7,8 @@ Entity::Entity(std::string name, Coordinate coordinate, int velocity):
     startCoordinate(coordinate),
     velocity(velocity),
     widthOverride(-1),
-    heightOverride(-1) {
+    heightOverride(-1),
+    pointsGiven(false){
     updateSprite(0);
 }
 
@@ -39,6 +40,13 @@ void Entity::setVelocity(int v) {
 
 int Entity::getVelocity() {
     return velocity;
+}
+
+bool Entity::getPointsGiven() {
+    return  pointsGiven;
+}
+void Entity::setPointsGiven(bool status) {
+    this->pointsGiven=status;
 }
 
 int Entity::width() {

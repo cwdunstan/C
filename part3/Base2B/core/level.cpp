@@ -5,3 +5,10 @@ level::level(std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout
 {
 }
 
+int level::getStartScore() {
+    return this->startScore;
+}
+
+void level::setStartScore(int set) {
+    startScore = set;
+}

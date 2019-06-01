@@ -79,3 +79,11 @@ int Stickman::height() {
 Coordinate &Stickman::getCoordinate() {
     return coordinate;
 }
+
+void Stickman::setScore(int score) {
+    highscore=score;
+}
+
+int Stickman::getScore() {
+    return highscore;
+}

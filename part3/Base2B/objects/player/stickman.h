@@ -28,7 +28,8 @@ public:
 
     bool getCheckpoint();
     void setCheckpoint(bool set);
-
+    void setScore(int score);
+    int getScore();
     virtual void handleInput(QKeyEvent &event);
     virtual void update(std::vector<std::unique_ptr<Entity>> &obstacles);
 
@@ -41,6 +42,7 @@ public:
     int height();
 
 protected:
+    int highscore;
     bool colliding;
     bool movingLeft=false;
     bool movingRight=false;

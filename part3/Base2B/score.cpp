@@ -28,3 +28,15 @@ void Score::render(Renderer &renderer) {
         number.pop();
     }
 }
+
+void Score::setScore (int set) {
+    currScore = set;
+}
+
+int Score::getScore () {
+    return currScore;
+}
+
+void Score::addScore (int add) {
+    currScore = currScore+add;
+}

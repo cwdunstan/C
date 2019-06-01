@@ -9,8 +9,15 @@ public:
     level(std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout);
 
     void setNextLevel(level * nextLevel);
+    int getStartScore();
+    void setStartScore(int set);
 
     std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout;
+
+
+
+protected:
+    int startScore;
 
 private:
     level* nextLevel;

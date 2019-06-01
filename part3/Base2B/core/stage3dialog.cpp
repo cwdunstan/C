@@ -6,6 +6,9 @@
 Stage3Dialog::Stage3Dialog(Game &game, std::unique_ptr<Stickman> stickman, std::unique_ptr<EntityFactory> factory, std::vector<std::pair<std::unique_ptr<Entity>, int>> obstacleLayout, std::vector<level> stageLevels) :
     Dialog(game, std::move(stickman), std::move(factory)), obstacleLayout(std::move(obstacleLayout)), distanceToSpawn(0), nextObstacle(0), stageLevels(std::move(stageLevels)) {
     currLevel=&this->stageLevels[0];
+    currLevel->setStartScore(0);
+    score.setScore(currLevel->getStartScore());
+
 }
 
 void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
@@ -40,20 +43,18 @@ void Stage3Dialog::spawnObstacles(unsigned int /*counter*/) {
 
 void Stage3Dialog::update() {
     stickman->update(obstacles);
+    score.setScore(stickman->getScore());
     if (stickman->getCheckpoint()) {
-        clearObstacle();
-        distanceToSpawn=0;
-        nextObstacle=0;
+        resetFrame();
+        this->stageLevels[1].setStartScore(score.getScore());
         currLevel=&this->stageLevels[1];
         stickman->setCheckpoint(false);
-
     }
     if (!stickman->isColliding() && stickman->isMoving()) {
         hasCollided=false;
         // Reduce distance to next obstacle
         if(stickman->isMovingRight()){
             background.setBackwards(false);
-            score.increment();
         }
         if(stickman->isMovingLeft()){
             background.setBackwards(true);
@@ -62,26 +63,22 @@ void Stage3Dialog::update() {
         background.update();
         speedUp(counter);
         spawnObstacles(counter);
+
     }
 
     if (stickman->isMoving() && stickman->isColliding()) {
         if (!hasCollided) {
-            stickman->setMoving(false);
-            //reset obstacles
-            clearObstacle();
-            distanceToSpawn=0;
-            nextObstacle=0;
+            resetFrame();
             //decrement lives
             lives.decrement();
-
+            score.setScore(currLevel->getStartScore());
+            stickman->setScore(currLevel->getStartScore());
             if (lives.getLives() == 0) {
 
             }
-
         }
         hasCollided=true;
     }
-
 
     for (auto &c : clouds) {
         c->collisionLogic(*stickman);
@@ -90,5 +87,13 @@ void Stage3Dialog::update() {
     for (auto &o : obstacles) {
         o->collisionLogic(*stickman);
     }
+}
+
+void Stage3Dialog::resetFrame() {
+    clearObstacle();
+    distanceToSpawn=0;
+    nextObstacle=0;
+    stickman->setMoving(false);
+
 }
 

@@ -32,6 +32,8 @@ public:
     virtual int getVelocity();
     virtual void setVelocity(int v);
     virtual std::string getName();
+    virtual bool getPointsGiven();
+    virtual void setPointsGiven(bool status);
 
     virtual std::unique_ptr<Entity> clone();
 
@@ -44,6 +46,7 @@ protected:
     QPixmap sprite;
     int widthOverride;
     int heightOverride;
+    bool pointsGiven;
 
     void setSprite(QPixmap &pm);
     void updateSprite(unsigned int time);

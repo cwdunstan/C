@@ -12,6 +12,9 @@ public:
     Score();
 
     void increment();
+    void setScore (int set);
+    int getScore ();
+    void addScore (int add);
     void render(Renderer &renderer);
 
 private:
