@@ -6,6 +6,7 @@ JumpTest::JumpTest() : TestRunner("JumpTest") {
     stickman->setSprite(":sprites/sprite0.png");
     stickman->setCoordinate(Coordinate(50, 50, 450));
     stickman->setSize("normal");
+    stickman->setMoving(true);
 
     obstacles.push_back(std::move(std::make_unique<Bird>(Coordinate(400, 50, 450), 2)));
 }

@@ -1,7 +1,7 @@
 #include "movetest.h"
 #include "coordinate.h"
 
-MoveTest::MoveTest() : TestRunner("JumpTest") {
+MoveTest::MoveTest() : TestRunner("MoveTest") {
     stickman = std::make_unique<MovableStickman>(50);
     stickman->setSprite(":sprites/sprite0.png");
     stickman->setCoordinate(Coordinate(50, 50, 450));
@@ -12,8 +12,8 @@ MoveTest::MoveTest() : TestRunner("JumpTest") {
 
 void MoveTest::update() {
     stickman->update(obstacles);
-    if (stickman->isColliding()) {
-        stickman->jump();
+    if (!stickman->isColliding()) {
+        stickman->setMoving(true);
     }
 
     auto &o = obstacles[0];

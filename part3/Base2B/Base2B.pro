@@ -59,10 +59,10 @@ SOURCES += \
     core/testing/testcases/flyingobstacletest.cpp \
     core/stagefactory.cpp \
     objects/player/movablestickman.cpp \
-    core/testing/testcases/movetest.cpp \
     core/stage3dialog.cpp \
     lives.cpp \
-    core/level.cpp
+    core/level.cpp \
+    core/testing/testcases/powertest.cpp
 
 HEADERS += \
     objects/entities/colouredentity.h \
@@ -93,10 +93,10 @@ HEADERS += \
     core/testing/testcases/flyingobstacletest.h \
     core/stagefactory.h \
     objects/player/movablestickman.h \
-    core/testing/testcases/movetest.h \
     core/stage3dialog.h \
     lives.h \
-    core/level.h
+    core/level.h \
+    core/testing/testcases/powertest.h
 
 FORMS += \
         dialog.ui

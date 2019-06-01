@@ -6,6 +6,8 @@ FlyingObstacleTest::FlyingObstacleTest() : TestRunner("FlyingObstacleTest") {
     stickman->setSprite(":sprites/sprite0.png");
     stickman->setCoordinate(Coordinate(50, 50, 450));
     stickman->setSize("normal");
+    stickman->setMoving(true);
+
 
     auto bird = std::make_unique<FlyingEntity>(std::make_unique<Bird>(Coordinate(400, 50, 450), 2), 2);
     obstacles.push_back(std::move(bird));

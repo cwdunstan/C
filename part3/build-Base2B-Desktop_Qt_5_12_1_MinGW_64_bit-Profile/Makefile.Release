@@ -2423,6 +2423,14 @@ release/dialog.o: ../Base2B/core/dialog.cpp ../Base2B/core/dialog.h \
 		../Base2B/core/game.h \
 		../Base2B/core/gamestage.h \
 		ui_dialog.h \
+		D:/Qt/5.12.1/mingw73_64/include/QtCore/QVariant \
+		D:/Qt/5.12.1/mingw73_64/include/QtWidgets/QApplication \
+		D:/Qt/5.12.1/mingw73_64/include/QtWidgets/qapplication.h \
+		D:/Qt/5.12.1/mingw73_64/include/QtCore/qcoreapplication.h \
+		D:/Qt/5.12.1/mingw73_64/include/QtCore/qeventloop.h \
+		D:/Qt/5.12.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/5.12.1/mingw73_64/include/QtGui/qguiapplication.h \
+		D:/Qt/5.12.1/mingw73_64/include/QtGui/qinputmethod.h \
 		../Base2B/objects/entities/flyingentity.h \
 		../Base2B/objects/entities/entitydecorator.h \
 		../Base2B/objects/collision.h \
