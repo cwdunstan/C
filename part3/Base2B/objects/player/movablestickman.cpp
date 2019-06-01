@@ -3,7 +3,7 @@
 #include <QMessageBox>
 
 MovableStickman::MovableStickman(int floor, int jumpImpulse, int maxJumpCount, int gravity) :
-   contact(false),floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
+   powered(false),contact(false),floor(floor), jumpImpulse(jumpImpulse), jumpVelocity(0), gravity(gravity), jumpCount(0), maxJumpCount(maxJumpCount)  {
 
 }
 
@@ -102,12 +102,12 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by - height() - 1;
                 if (other->getName().compare("Checkpoint")==0) {
                      setCheckpoint(true);
-                } else if (other->getName().compare("bird")==1) {
+                } else if (other->getName().compare("bird")==0) {
+                    highscore=highscore+2;
+                } else{
                     handleObstacles(other);
-                    obstacles.erase(obstacles.begin()+i);
                 }
                 obstacles.erase(obstacles.begin()+i);
-                highscore=highscore+2;
 
             } else {
                 // Hidding obstacle from the side
@@ -117,7 +117,7 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 } else if (other->getName().compare("bird")==1) {
                     handleObstacles(other);
                     obstacles.erase(obstacles.begin()+i);
-                } else if (this->getSize()=="giant") {
+                } else if (this->getSize()=="giant"){
                     obstacles.erase(obstacles.begin()+i);
                     highscore=highscore+2;
                 } else {
@@ -145,6 +145,7 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
 
 void MovableStickman::setPower(std::string type) {
     if (type == "titan") {
+
         setSize("giant");
         powered=true;
 
@@ -163,10 +164,7 @@ void MovableStickman::setPower(std::string type) {
 }
 
 void MovableStickman::handleObstacles(std::unique_ptr<Entity> &obs) {
-    if (obs->getName().compare("Checkpoint")==0) {
-        setCheckpoint(true);
-        setPower("normal");
-    } else if (obs->getName().compare("Powerup")==0) {
+   if (obs->getName().compare("Powerup")==0) {
         if (!powered) {
             setPower("titan");
         }

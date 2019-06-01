@@ -222,36 +222,52 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_resources.cpp
 release/qrc_resources.cpp: ../Base2B/resources.qrc \
 		D:/Qt/5.12.1/mingw73_64/bin/rcc.exe \
-		../Base2B/sprites/moon3.png \
-		../Base2B/sprites/sprite1.png \
-		../Base2B/sprites/moon4.png \
-		../Base2B/sprites/moon5.png \
-		../Base2B/sprites/numbers.png \
-		../Base2B/sprites/moon6.png \
-		../Base2B/sprites/cactus0.png \
-		../Base2B/sprites/cactus1.png \
-		../Base2B/sprites/cactus2.png \
-		../Base2B/sprites/cloud0.png \
-		../Base2B/sprites/ground.png \
-		../Base2B/sprites/ground1.png \
-		../Base2B/sprites/bird0.png \
 		../Base2B/sprites/Checkpoint0.png \
-		../Base2B/sprites/bird1.png \
-		../Base2B/sprites/Checkpoint1.png \
-		../Base2B/sprites/0.png \
-		../Base2B/sprites/1.png \
-		../Base2B/sprites/2.png \
+		../Base2B/sprites/Powerup0.png \
+		../Base2B/sprites/h5.png \
+		../Base2B/sprites/speedBoost0.png \
 		../Base2B/sprites/3.png \
-		../Base2B/sprites/4.png \
-		../Base2B/sprites/5.png \
-		../Base2B/sprites/6.png \
-		../Base2B/sprites/7.png \
-		../Base2B/sprites/8.png \
+		../Base2B/sprites/points1.png \
+		../Base2B/sprites/health1.png \
+		../Base2B/sprites/h4.png \
+		../Base2B/sprites/ground.png \
+		../Base2B/sprites/2.png \
+		../Base2B/sprites/points0.png \
+		../Base2B/sprites/health0.png \
+		../Base2B/sprites/h3.png \
+		../Base2B/sprites/cloud0.png \
+		../Base2B/sprites/1.png \
+		../Base2B/sprites/moon6.png \
+		../Base2B/sprites/bird1.png \
+		../Base2B/sprites/h2.png \
+		../Base2B/sprites/0.png \
+		../Base2B/sprites/moon5.png \
+		../Base2B/sprites/bird0.png \
+		../Base2B/sprites/h1.png \
 		../Base2B/sprites/9.png \
-		../Base2B/sprites/moon0.png \
-		../Base2B/sprites/moon1.png \
+		../Base2B/sprites/moon4.png \
+		../Base2B/sprites/h0.png \
+		../Base2B/sprites/8.png \
+		../Base2B/sprites/sprite1.png \
+		../Base2B/sprites/cactus2.png \
+		../Base2B/sprites/moon3.png \
+		../Base2B/sprites/7.png \
+		../Base2B/sprites/sprite0.png \
+		../Base2B/sprites/cactus1.png \
 		../Base2B/sprites/moon2.png \
-		../Base2B/sprites/sprite0.png
+		../Base2B/sprites/6.png \
+		../Base2B/sprites/cactus0.png \
+		../Base2B/sprites/h7.png \
+		../Base2B/sprites/moon1.png \
+		../Base2B/sprites/5.png \
+		../Base2B/sprites/numbers.png \
+		../Base2B/sprites/Checkpoint1.png \
+		../Base2B/sprites/Powerup1.png \
+		../Base2B/sprites/h6.png \
+		../Base2B/sprites/ground1.png \
+		../Base2B/sprites/moon0.png \
+		../Base2B/sprites/speedBoost1.png \
+		../Base2B/sprites/4.png
 	D:\Qt\5.12.1\mingw73_64\bin\rcc.exe -name resources ..\Base2B\resources.qrc -o release\qrc_resources.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h

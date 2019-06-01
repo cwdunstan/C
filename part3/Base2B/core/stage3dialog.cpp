@@ -87,7 +87,7 @@ void Stage3Dialog::update() {
             score.setScore(currLevel->getStartScore());
             stickman->setScore(currLevel->getStartScore());
             if (lives.getLives() == 0) {
-
+                exit(0);
             }
         }
         hasCollided=true;
