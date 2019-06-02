@@ -62,7 +62,9 @@ SOURCES += \
     core/stage3dialog.cpp \
     lives.cpp \
     core/level.cpp \
-    core/testing/testcases/abilitytest.cpp
+    core/testing/testcases/poweruptest.cpp \
+    core/testing/testcases/shrinktest.cpp \
+    core/testing/testcases/livestest.cpp
 
 HEADERS += \
     objects/entities/colouredentity.h \
@@ -96,7 +98,9 @@ HEADERS += \
     core/stage3dialog.h \
     lives.h \
     core/level.h \
-    core/testing/testcases/abilitytest.h
+    core/testing/testcases/poweruptest.h \
+    core/testing/testcases/shrinktest.h \
+    core/testing/testcases/livestest.h
 
 FORMS += \
         dialog.ui

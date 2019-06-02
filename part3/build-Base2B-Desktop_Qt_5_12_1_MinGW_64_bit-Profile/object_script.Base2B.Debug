@@ -29,6 +29,8 @@ debug/movablestickman.o
 debug/stage3dialog.o
 debug/lives.o
 debug/level.o
-debug/abilitytest.o
+debug/poweruptest.o
+debug/shrinktest.o
+debug/livestest.o
 debug/qrc_resources.o
 debug/moc_game.o

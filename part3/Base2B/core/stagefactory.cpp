@@ -3,7 +3,9 @@
 #include "jumptest.h"
 #include "movetest.h"
 #include "flyingobstacletest.h"
-#include "abilitytest.h"
+#include "poweruptest.h"
+#include "shrinktest.h"
+#include "livestest.h"
 #include "swaprendererstage.h"
 #include "testingdialog.h"
 #include "stage2dialog.h"
@@ -21,12 +23,12 @@ std::unique_ptr<GameStage> StageFactory::createStage() {
         if (config.testMode) {
             // Stage 3 test mode
             std::vector<std::unique_ptr<TestRunner>> tests;
-            //TO DO: stage 3 specific tests
-//            tests.push_back(std::make_unique<CollisionTest>());
-//            tests.push_back(std::make_unique<JumpTest>());
-//            tests.push_back(std::make_unique<FlyingObstacleTest>());
-              tests.push_back(std::make_unique<AbilityTest>());
-
+            tests.push_back(std::make_unique<CollisionTest>());
+            tests.push_back(std::make_unique<JumpTest>());
+            tests.push_back(std::make_unique<FlyingObstacleTest>());
+            tests.push_back(std::make_unique<PowerUpTest>());
+            tests.push_back(std::make_unique<ShrinkTest>());
+            tests.push_back(std::make_unique<LivesTest>());
 
             std::unique_ptr<GameStage> tester = std::make_unique<TestingDialog>(std::move(tests));
             return std::make_unique<SwapRendererStage>(std::move(tester));

@@ -1,36 +1,67 @@
-======= CONFIG FILE INSTRUCTIONS FOR STAGE 2 =======
-To enable stage 2, the setting "stage: 2" should be in the config file. Otherwise, stage 1 will run.
-To enable the testing interface, the settings "stage: 2" and "testMode: on" should be in the config file.
-To add obstacles to the stage 2 obstacle layout, the setting in the config file should look like this (without quotes):
+======= CONFIG FILE INSTRUCTIONS FOR STAGE 3 =======
+To enable stage 3, the setting "stage: 3" should be in the config file. Otherwise, stage 1 will run.
+To enable the testing interface, the settings "stage: 3" and "testMode: on" should be in the config file.
+To add obstacles to the stage 3 obstacle layout, the setting in the config file should look like this (without quotes):
 
 "obstacles: OBSTACLE|OBSTACLE|OBSTACLE|..." -- each obstacle is separated by a |
+
+To add extra levels to stage 3, they should follow the "newLevel:" identifier in the config files, as follow:
+
+"newLevel: OBSTACLE|OBSTACLE| "
+
+This can be repeated multiple times to add additional levels to the game. Each level will be appended with a checkpoint to signify the end of the level / game.
 
 The format for an OBSTACLE looks like this (without quotes):
 "WIDTH,HEIGHT,Y_POSITION,SPACING_UNTIL_NEXT_OBSTACLE,COLOUR_RED,COLOUR_BLUE,COLOUR_GREEN,FLY_RATE"
 
-======= Structural Design Pattern Used =======
-Decorator Pattern
-- ColouredEntity: Decorates the Entity class's render method by recolouring the sprite before calling the original render method
-- FlyingEntity: Decorates the Entity class's update method by adding flying and vertical collision logic before calling the original update method.
-- SwapRendererStage: Decorates a GameStage by modfiying the Renderer that will be passed to it, therefore changing the way the game is rendered.
+Powerups can also be added to the obstacle layout, they follow the format of:
+"TYPE,Y_POSITION,POSITION_UNTIL_NEXT_OBSTACLE"
+
+Player Lives can also be set in the config file, by setting a value to the "lives:" attribute.
+This value must range between 1 and 8.
+
+
+======= Behavioural Design Pattern Used =======
+State Design Pattern
+- Level: each level of the game is represented by a state, each storing an obstacle layout and checkpoint at the end of the obstacle sequence.
+- On collision with an obstacle, the state will reset and a player life lost.
+- On collsion with a checkpoint, the next state will load.
+- If the last state is reached, or lives run out, the game will end.
 
 ======= Coding Style =======
 See README_STAGE1
 
-======= Extensions =======
-== Extendible Testing Interface ==
-While the testing interface was part of the assignment, this is a more advanced/extendible version which allows test cases to subclass from the TestRunner interface which are run as independent game worlds for testing game features in isolation. TestRunners are queried for their status by the TestingDialog before going to the next TestRunner upon a PASS or FAIL. The game is visible to the user while the test case are running, and its status is shown in the top left corner of the screen. 
+===== Additional Testing Interface =====
+Building on the previous testing interface of stage 2, multiple tests were added to assess the functionality of the powerups. 
+It assess the ability of powerups to change player size, as well as trigger a new life to be added on update.
+To enable the testing interface, the config file should have the "stage: 3" and "testMode: on" settings. The program will exit upon finishing all test cases.
 
-To enable the testing interface, the config file should have the "stage: 2" and "testMode: on" settings. The program will exit upon finishing all test cases.
+===== User Control =====
+The player can now be controlled. The left arrow will move the player to the left, and the right arrow to the right. The space bar will still jump.
 
-== Game Stages ==
-Game stages (stage 1, 2 and the testing interface) share a common GameStage subclass, and the Game class is the main QWidget which redirects all events to the active GameStage, which can be easily changed via the setStage method. This means it's now very easy to switch between stages (or even different levels of the same stage, if implemented in a later stage) at runtime, whereas before it was unchangeable.
+===== Score =====
+The player now has a score that is the main goal of the game. points can be achieved in the following way:
+- destroying an obstacle by impact from below (+2)
+- destroying an obstacle while Powerup is active (+2)
+- obtaining a point bonus orb (+50!)
+If a player collides with an obstacle during a level, their score will be reset to its value at the start of the level, unless they are able to land directly on an obstacle without moving. The final score will be displayed on completion of the game, or death.
 
-== Switchable Rendering Modes ==
-With some refactoring of the original code, all render methods now take a Renderer rather than a QPainter (note that QPainter has no virtual methods so could not be extended). GameStage has a SwapRendererStage decorator which can switch out the Renderer for a different one, changing how the game world is drawn. For now, it's used in stage 2 (and its testing mode) to toggle a debugging version which displays collision boxes and positional text by pressing the "1" key.
+===== Lives =====
+The player now has a set amount of lives throughout the game. These lives are displayed as hearts in the top right corner. Lives can be gained through rare powerups, and are lost on collision with obstacles. If the player lives reach 0, the game will end, displaying the players current score.
 
-== Double/Multiple Jumps ==
-The stickman can jump a number of times while in the air before hitting the ground as specified in its constructor. By default, this is set to 2 meaning the stickman can jump once off the ground and then once more in the air before no further jumps are allowed until hitting the ground.
 
-== Flying Obstacles ==
-Obstacles can fly up or down as specified by the final value for each obstacle in the config file layout. When the stickman jumps on top of a obstacle the obstacle will stop flying until the stickman is no longer on top of it.
+===== PowerUps =====
+There are a total of 4 powerups available in the game:
+- 0: Powerup -> The player is set to a Giant size. Although unable to jump in this form, all obstacles will be destroyed on collision, and the player will gain points.
+- 1: Shrink -> The player is set to a Tiny size. Although smaller than normal, the player is granted an additional jump, allowing greater mobility.
+- 2: Health -> These orbs grant the player an extra life (maximum 8 lives).
+- 3: Points -> These orbs grant the player 50 extra points (big bonus).
+
+====Extensions====
+- ability to destroy objects by colliding from beneath.
+- graphical display of lives with hearts.
+- graphical display of checkpoints as flags.
+- addition of bonus points and bonus lives.
+- Display window for score at end of game / death.
+
+

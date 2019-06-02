@@ -82,16 +82,19 @@ public:
 class PowerUp: public Entity {
 public:
     PowerUp(Coordinate coordinate, int velocity);
+    virtual void collisionLogic(Stickman &player);
 };
 
 class speedBoost: public Entity {
 public:
     speedBoost(Coordinate coordinate, int velocity);
+    virtual void collisionLogic(Stickman &player);
 };
 
 class health: public Entity {
 public:
     health(Coordinate coordinate, int velocity);
+    virtual void collisionLogic(Stickman &player);
 };
 
 class points: public Entity {

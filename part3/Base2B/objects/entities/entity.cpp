@@ -136,11 +136,39 @@ Checkpoint::Checkpoint(Coordinate coordinate, int velocity):
 PowerUp::PowerUp(Coordinate coordinate, int velocity):
     Entity("Powerup", coordinate, velocity) {}
 
+void PowerUp::collisionLogic(Stickman &player) {
+    if (!player.isColliding() && player.isMoving()) {
+        this->updateCoordinate();
+    } else if(player.isColliding()) {
+        player.setSize("giant");
+        this->updateCoordinate();
+    }
+}
+
 speedBoost::speedBoost(Coordinate coordinate, int velocity):
     Entity("speedBoost", coordinate, velocity) {}
 
+void speedBoost::collisionLogic(Stickman &player) {
+    if (!player.isColliding() && player.isMoving()) {
+        this->updateCoordinate();
+    } else if(player.isColliding()) {
+        player.setSize("tiny");
+        this->updateCoordinate();
+    }
+}
+
 health::health(Coordinate coordinate, int velocity):
     Entity("health", coordinate, velocity) {}
+
+void health::collisionLogic(Stickman &player) {
+    if (!player.isColliding() && player.isMoving()) {
+        this->updateCoordinate();
+    } else if(player.isColliding()) {
+        player.setExtraLife(true);
+        this->updateCoordinate();
+    }
+}
+
 
 points::points(Coordinate coordinate, int velocity):
     Entity("points", coordinate, velocity) {}

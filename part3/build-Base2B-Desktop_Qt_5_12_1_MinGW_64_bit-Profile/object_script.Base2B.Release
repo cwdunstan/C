@@ -29,6 +29,8 @@ release/movablestickman.o
 release/stage3dialog.o
 release/lives.o
 release/level.o
-release/abilitytest.o
+release/poweruptest.o
+release/shrinktest.o
+release/livestest.o
 release/qrc_resources.o
 release/moc_game.o
