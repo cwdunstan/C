@@ -199,24 +199,43 @@ int main(int argc, char *argv[]) {
                 for (int i = 0; i < sl.length() && ok; i++) {
                     ok = isNumber(sl.at(i));
                 }
-                if (sl.length() != 8 || !ok) {
+                if ((sl.length() !=8 && sl.length() !=3)  || !ok) {
                     cout << "Invalid obstacle values. Terminating.";
                     return 0;
                 }
 
                 // Make a coloured bird obstacle according to the config
-                auto e = factory.getEntity("bird");
-                e = make_unique<ColouredEntity>(move(e), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
-                e->setSize(sl.at(0).toInt(), sl.at(1).toInt());
-                e->getCoordinate().setYCoordinate(sl.at(2).toInt());
-                int flyRate = sl.at(7).toInt();
-                if (flyRate != 0) {
-                    e = make_unique<FlyingEntity>(move(e), flyRate);
+                if (sl.length() == 8) {
+                    auto e = factory.getEntity("bird");
+                    e = make_unique<ColouredEntity>(move(e), QColor(sl.at(4).toInt(), sl.at(5).toInt(), sl.at(6).toInt()));
+                    e->setSize(sl.at(0).toInt(), sl.at(1).toInt());
+                    e->getCoordinate().setYCoordinate(sl.at(2).toInt());
+                    int flyRate = sl.at(7).toInt();
+                    if (flyRate != 0) {
+                        e = make_unique<FlyingEntity>(move(e), flyRate);
+                    }
+                    // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
+                    newObstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
+                } else {
+                    //generate powerup depending on ID provided
+                    if (sl.at(0).toInt()==0){
+                        auto p = factory.getEntity("Powerup");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        newObstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    } else if (sl.at(0).toInt()==1) {
+                        auto p = factory.getEntity("speedBoost");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        newObstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    } else if (sl.at(0).toInt()==2) {
+                        auto p = factory.getEntity("health");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        newObstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    } else if (sl.at(0).toInt()==3) {
+                        auto p = factory.getEntity("points");
+                        p->getCoordinate().setYCoordinate(sl.at(1).toInt());
+                        newObstacles.push_back(make_pair(move(p),sl.at(2).toInt()));
+                    }
                 }
-
-                // Add the pair (obstacle, spacing_to_next_obstacle) to our obstacle layout
-                newObstacles.push_back(make_pair(move(e), sl.at(3).toInt()));
-
             }
             auto c = factory.getEntity("Checkpoint");
             c->getCoordinate().setYCoordinate(135);

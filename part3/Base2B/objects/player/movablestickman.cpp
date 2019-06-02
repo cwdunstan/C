@@ -87,14 +87,14 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 newY = by + other->height() + 1;
                 if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
-                } else if (other->getName().compare("bird")==1) {
+                } else if (other->getName().compare("bird")==0) {
+                    colliding = true;
+                    if(powered) {
+                        setPower("normal");
+                    }
+                } else {
                     handleObstacles(other);
                     obstacles.erase(obstacles.begin()+i);
-                } else {
-                    if (!other->getPointsGiven()) {
-                        highscore++;
-                        other->setPointsGiven(true);
-                    }
                 }
             } else if (col.up) {
                 // Hitting obstacle from below
@@ -114,17 +114,19 @@ void MovableStickman::update(std::vector<std::unique_ptr<Entity>> &obstacles) {
                 if (other->getName().compare("Checkpoint")==0) {
                     setCheckpoint(true);
                     setPower("normal");
-                } else if (other->getName().compare("bird")==1) {
-                    handleObstacles(other);
-                    obstacles.erase(obstacles.begin()+i);
-                } else if (this->getSize()=="giant"){
-                    obstacles.erase(obstacles.begin()+i);
-                    highscore=highscore+2;
-                } else {
-                    colliding = true;
-                    if(powered) {
-                        setPower("normal");
+                } else if (other->getName().compare("bird")==0) {
+                    if (this->getSize()=="giant"){
+                        obstacles.erase(obstacles.begin()+i);
+                        highscore=highscore+2;
+                    } else {
+                        colliding = true;
+                        if(powered) {
+                            setPower("normal");
+                        }
                     }
+                } else {
+                   handleObstacles(other);
+                   obstacles.erase(obstacles.begin()+i);
                 }
             }
         }

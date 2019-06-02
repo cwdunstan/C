@@ -18,7 +18,7 @@ public:
 
 private:
     unsigned int currLives;
-    QPixmap digits[10];
+    QPixmap digits[8];
 };
 
 #endif // LIVES_H

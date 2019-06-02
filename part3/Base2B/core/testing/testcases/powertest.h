@@ -1,15 +1,15 @@
-#ifndef JUMPTEST_H
-#define JUMPTEST_H
+#ifndef POWERTEST_H
+#define POWERTEST_H
 
 #include <memory>
 #include "jumpingstickman.h"
 #include "testrunner.h"
 #include "entity.h"
 
-class JumpTest : public TestRunner {
+class PowerTest : public TestRunner {
 public:
-    JumpTest();
-    ~JumpTest() = default;
+    PowerTest();
+    ~PowerTest() = default;
 
     void update();
     void render(Renderer &renderer);
@@ -20,4 +20,4 @@ private:
     std::vector<std::unique_ptr<Entity>> obstacles;
 };
 
-#endif // JUMPTEST_H
+#endif // POWERTEST_H

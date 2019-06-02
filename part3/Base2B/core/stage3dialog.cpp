@@ -52,7 +52,14 @@ void Stage3Dialog::update() {
             currLevel=&this->stageLevels[currLevel->getIndex()+1];
             stickman->setCheckpoint(false);
         } else {
-            exit(0);
+            QMessageBox winMessage;
+            winMessage.setText("Winner!\nFinal Score:\n"+QString::number(stickman->getScore()));
+            QFont serifFont("Times", 20, QFont::Fantasy);
+            winMessage.setFont(serifFont);
+            winMessage.exec();
+            if(winMessage.close()) {
+                exit(0);
+            }
         }
     }
     //increase lives is powerup gained
@@ -86,8 +93,15 @@ void Stage3Dialog::update() {
             lives.decrement();
             score.setScore(currLevel->getStartScore());
             stickman->setScore(currLevel->getStartScore());
-            if (lives.getLives() == 0) {
-                exit(0);
+            if (lives.getLives() == 1) {
+                QMessageBox winMessage;
+                winMessage.setText("Game Over\nFinal Score:\n"+QString::number(stickman->getScore()));
+                QFont serifFont("Times", 20, QFont::Fantasy);
+                winMessage.setFont(serifFont);
+                winMessage.exec();
+                if(winMessage.close()) {
+                    exit(0);
+                }
             }
         }
         hasCollided=true;
